@@ -1,25 +1,53 @@
 ---
 import type { Skill } from '@interfaces/Skill';
-
 const { skill } = Astro.props as Skill;
 ---
 
-<!-- Habilidad 1: HTML5 -->
-<div class="skill-card">
-  <div class="skill-card-inner">
-    <div class="skill-card-front">
+<div class="group w-full aspect-square relative perspective">
+  <div
+    class="
+      relative w-40 h-40 
+      transition-transform duration-700 
+      preserve-3d 
+      group-hover:rotate-y-180
+      rounded-xl 
+      shadow-md 
+      bg-white/5 dark:bg-white/5
+      border border-black/10 dark:border-white/10
+    "
+  >
+
+    <!-- FRONT -->
+    <div
+      class="
+        absolute inset-0 
+        backface-hidden 
+        flex flex-col items-center justify-center gap-3
+        p-4 rounded-xl
+      "
+    >
       <img
         src={skill.icon}
         alt={skill.name}
-        width="56"
-        height="56"
-        class="w-14 h-14 object-contain mb-3"
+        class="w-14 h-14 object-contain opacity-90"
         loading="lazy"
       />
-      <p class="font-semibold text-lg">{skill.name}</p>
+      <p class="font-semibold text-lg text-center">{skill.name}</p>
     </div>
-    <div class="skill-card-back">
-      <p>{skill.description}</p>
+
+    <!-- BACK -->
+    <div
+      class="
+        absolute inset-0 
+        rotate-y-180 
+        backface-hidden 
+        flex flex-col items-center justify-center
+        p-4 rounded-xl
+        text-sm
+      "
+    >
+      <p class="text-center">{skill.description}</p>
     </div>
+
   </div>
 </div>

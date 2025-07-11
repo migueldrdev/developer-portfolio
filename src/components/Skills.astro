@@ -9,25 +9,20 @@ const { skills = [] } = Astro.props as { skills: Array<Skill> };
 
 <section
   id="habilidades"
-  class="scroll-section px-4 pt-20 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  class="scroll-section px-4 pt-20 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl text-gray-700 dark:text-gray-300"
 >
-  <!-- <div class="w-full"> -->
-    <TitleSection> <Code class="size-8"/> Mis Habilidades </TitleSection>
-    <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-gray-700 dark:text-gray-300"
-    >
-      {
-        skills.map((skill: any) => (
-          <SkillCard
-            data-id={skill.id}
-            skill={{
-              name: skill.name,
-              icon: skill.icon,
-              description: skill.description,
-            }}
-          />
-        ))
-      }
-    <!-- </div> -->
+  <div class="w-full text-left">
+    <TitleSection> <Code class="size-8" /> Mis Habilidades </TitleSection>
+     <div
+    class="grid
+    grid-cols-2
+    sm:grid-cols-3
+    md:grid-cols-4
+    lg:grid-cols-5
+    gap-6"
+  >
+    {skills.map((skill) => <SkillCard skill={skill} />)}
   </div>
+  </div>
+ 
 </section>
