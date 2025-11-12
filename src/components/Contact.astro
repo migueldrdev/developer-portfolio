@@ -1,5 +1,6 @@
 ---
-
+import Input from "@components/contact/Input.astro";
+import TextArea from "./contact/TextArea.astro";
 ---
 
 <!-- SECCIÓN: CONTACTO -->
@@ -17,21 +18,17 @@
     </p>
     <form id="contact-form" class="space-y-6">
       <div>
-        <input
+        <Input
           type="text"
           placeholder="Tu Nombre"
           name="name"
-          required
-          class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:border-sky-500 transition"
         />
       </div>
       <div>
-        <input
+        <Input
           type="email"
           placeholder="Tu Email"
           name="email"
-          required
-          class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:border-sky-500 transition"
         />
       </div>
 
@@ -43,11 +40,10 @@
           >¿Ayuda para redactar? (ej: "Ofrecer un trabajo frontend")</label
         >
         <div class="flex flex-col sm:flex-row gap-2">
-          <input
+          <Input
             type="text"
             id="mensaje-prompt"
             placeholder="Describe tu intención..."
-            class="flex-grow px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:border-sky-500 transition"
           />
           <button
             type="button"
@@ -66,14 +62,12 @@
       </div>
       <!-- FIN: Integración Gemini API -->
       <div>
-        <textarea
+        <TextArea
           id="mensaje-contacto"
           placeholder="Tu Mensaje"
           name="message"
           rows="5"
-          required
-          class="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:border-sky-500 transition"
-        ></textarea>
+        />
       </div>
       <div>
         <button

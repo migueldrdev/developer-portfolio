@@ -1,7 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import NavbarElement from "./NavbarElement.astro";
 import DarkModeToggle from "../DarkModeToggle.astro";
 import type { Menu } from "../../interfaces/Menu";
+
+// Importar la imagen para optimización
+import miguelImage from "/public/miguelDR05.webp";
+
 const { menu = [] } = Astro.props;
 
 // Convertimos el menú a un estado reactivo (opcional si no se usa JS dinámico)
@@ -10,32 +15,36 @@ const menuItems = menu.map((item: Menu) => ({
   current: false, // Inicialmente ningún enlace está activo
 }));
 ---
-
+<!-- bg-white dark:bg-gray-900 // Para el fondo del navbar -->
 <nav
-  class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
+  id="navbar"
+  class="fixed w-full z-20 top-0 start-0 border-b border-transparent transition-all duration-150"
 >
-  <div class="flex flex-wrap items-center justify-between p-4">
-    <a
+<!-- bg-red-500 -->
+  <div class="bg-white dark:bg-gray-900 flex flex-wrap gap-4 items-center justify-end lg:justify-center p-4">
+    <!-- <a
       href="https://github.com/miguelDR05"
       target="_blank"
       class="flex items-center space-x-3 rtl:space-x-reverse"
     >
-      <img
-        src="/miguelDR05.webp"
+      <Image
+        src={miguelImage}
         class="rounded-full h-8 object-cover"
         alt="Flowbite Logo"
+        width={32}
+        height={32}
       />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white"
         >Miguel Delgado</span
       >
-    </a>
+    </a> -->
     <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
       <DarkModeToggle />
 
       <!-- Como oculto con tamaños exactos con tailwind 
         sm  = 640px
-        lg  = 768px
+        md  = 768px
         lg  = 1024px
         xl  = 1280px
         2xl = 1536px
@@ -85,7 +94,7 @@ const menuItems = menu.map((item: Menu) => ({
       id="navbar-sticky"
     >
       <ul
-        class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700"
+        class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 text-white"
       >
         {menuItems.map((item: Menu) => <NavbarElement {...item} />)}
 
@@ -207,5 +216,37 @@ const menuItems = menu.map((item: Menu) => ({
     </div>
   </div>
 </nav>
+
+<script is:inline>
+  // Script para cambiar el navbar al hacer scroll
+  function handleNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    
+    if (window.scrollY > 20) {
+      // Cuando hay scroll: fondo sólido
+      navbar.classList.add('bg-white', 'dark:bg-gray-900', 'border-gray-200', 'dark:border-gray-600', 'shadow-md');
+      navbar.classList.remove('border-transparent');
+    } else {
+      // En la parte superior: transparente
+      navbar.classList.remove('bg-white', 'dark:bg-gray-900', 'border-gray-200', 'dark:border-gray-600', 'shadow-md');
+      navbar.classList.add('border-transparent');
+    }
+  }
+
+  // Ejecutar al cargar la página
+  handleNavbarScroll();
+  
+  // Ejecutar al hacer scroll (con throttle para mejor performance)
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleNavbarScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>
 
 <script type="module" src="src/scripts/scroll-spy.js"></script>

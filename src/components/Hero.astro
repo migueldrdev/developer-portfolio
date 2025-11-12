@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Badge from "@components/badges/Badge.astro";
 import SocialBadge from "@components/badges/SocialBadge.astro";
 import LinkBadge from "@components/badges/LinkBadge.astro";
@@ -8,20 +9,25 @@ import LinkedInIcon from "@components/icons/LinkedIn.astro";
 import GitHub from "@components/icons/Github.astro";
 import Cv from "@components/icons/Cv.astro";
 
+// Importar la imagen para optimización
+import miguelImage from "/public/miguelDR05.webp";
+
 const personalImageAlt =
   "Miguel Delgado Ruiz - Ingeniero de Software y Desarrollador Front-end";
 ---
 
 <section
   id="inicio"
-  class="scroll-section px-4 md:px-8 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  class="scroll-section py-16 md:py-36 scroll-m-20 w-full mx-auto lg:max-w-4xl md:max-w-2xl"
 >
   <div class="w-full">
     <div class="flex gap-4 mb-4">
-      <img
+      <Image
         class="rounded-full shadow-lg h-20 w-20 object-cover"
         src="/miguelDR05.webp"
         alt={personalImageAlt}
+        width={80}
+        height={80}
       />
       <a
         href="https://www.linkedin.com/in/miguel05dev"
@@ -38,7 +44,7 @@ const personalImageAlt =
       Hey!👋, soy miguelDR05
     </h1>
     <p
-      class="mt-4 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 max-w-xl mx-auto"
+      class="mt-4 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 max-w-xl"
     >
       +4 años de experiencia. <strong>
         Ingeniero de Software y Desarrollador Front-end
@@ -46,7 +52,7 @@ const personalImageAlt =
       eficientes, escalables y centradas en el usuario.
     </p>
     <!-- Sociales -->
-    <div class="mt-8 flex flex-wrap gap-4 justify-center">
+    <div class="mt-8 flex flex-wrap gap-4 justify-start">
       <SocialBadge href="#contacto">
         <MailIcon class="size-4" />
         Contáctame
@@ -61,7 +67,7 @@ const personalImageAlt =
       </SocialBadge>
     </div>
     <!-- Links de interés -->
-    <div class="mt-4 flex flex-wrap gap-4 justify-center">
+    <div class="mt-4 flex flex-wrap gap-4 justify-start">
       <LinkBadge
         href="https://github.com/miguelDR05"
         bg="bg-purple-100"
