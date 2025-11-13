@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "flowbite/src/themes/default";
+
 /* Custom variables */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -22,22 +23,16 @@
 
 /* Container */
 .container {
-  /* max-width: var(--container); */
   margin: 0 auto;
-  /* padding: 40px 20px; */
 }
 
 /* Estilos generales de secciones */
 .scroll-section {
-  /*padding-top: 80px; /* Espacio para el header fijo */
-  /* min-height: 70vh; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* text-align: center; */
-  position: relative;/* 
-  overflow: hidden; /* Para las imágenes de fondo */
+  position: relative;
 }
 
 /* Card background */

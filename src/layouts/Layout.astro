@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/onest";
-const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } = Astro.props;
+const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } =
+  Astro.props;
 ---
 
 <!doctype html>
@@ -20,13 +21,27 @@ const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } = Ast
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
-  
-  <body class="relative text-black dark:text-white bg-slate-950">
+
+  <body class="relative text-black bg-white dark:text-white dark:bg-slate-950">
+    
     <!-- Fondo fijo de cuadrícula (Ibelick) detrás de todo el contenido -->
     <div
       aria-hidden="true"
-      class="fixed inset-0 -z-10 pointer-events-none bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+      class="fixed inset-0 -z-10 pointer-events-none transition-colors duration-500"
     >
+      <!-- Fondo base: cambia con el tema -->
+      <div class="absolute inset-0 bg-white dark:bg-slate-950"></div>
+
+      <!-- Capa de patrón / cuadrícula: misma en light y dark, 
+       pero con máscaras distintas controladas por Tailwind -->
+      <div
+        class="absolute inset-0
+      bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)]
+      bg-[size:14px_24px]
+      [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]
+      dark:[mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+      >
+      </div>
     </div>
 
     <slot />
