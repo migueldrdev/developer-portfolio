@@ -9,12 +9,12 @@ const { skills = [] } = Astro.props as { skills: Array<Skill> };
 
 <section
   id="habilidades"
-  class="scroll-section px-4 pt-25 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  class="scroll-section px-4 pt-20 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
 >
-  <div class="w-full">
-    <TitleSection> <Code /> Mis Habilidades </TitleSection>
+  <!-- <div class="w-full"> -->
+    <TitleSection> <Code class="size-8"/> Mis Habilidades </TitleSection>
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-gray-700 dark:text-gray-300"
     >
       {
         skills.map((skill: any) => (
@@ -28,6 +28,6 @@ const { skills = [] } = Astro.props as { skills: Array<Skill> };
           />
         ))
       }
-    </div>
+    <!-- </div> -->
   </div>
 </section>

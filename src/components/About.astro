@@ -1,22 +1,21 @@
 ---
-import ProfileCheck from "../components/icons/ProfileCheck.astro";
+import TitleSection from "@components/TitleSection.astro";
+import ProfileCheck from "@components/icons/ProfileCheck.astro";
+import Link from "@components/icons/Link.astro";
 ---
 
-<!-- w-full mx-auto container lg:max-w-4xl md:max-w-2xl -->
 <section
-  id="sobre-mi"
-  class="scroll-section px-4 pt-25 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  id="about-me"
+  class="scroll-section px-4 pt-20 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
 >
   <div
-    class="flex flex-col items-center justify-center gap-8 lg:gap-12 text-gray-700 dark:text-gray-300 lg:flex-row"
+    class="flex flex-col items-center justify-center gap-4 lg:gap-8 text-gray-700 dark:text-gray-300 lg:flex-row"
   >
     <div class="text-left lg:basis-3/5 lg:min-w-0">
-      <h2
-        class="flex items-center gap-x-3 text-3xl sm:text-4xl font-bold text-[var(--color-extra-light-blue)] mb-6"
-      >
-        <ProfileCheck class="size-8" />
+      <TitleSection>
+        <ProfileCheck class="size-8"/>
         Sobre mí
-      </h2>
+      </TitleSection>
       <div
         class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
       >
@@ -41,27 +40,52 @@ import ProfileCheck from "../components/icons/ProfileCheck.astro";
         </p>
       </div>
     </div>
-    <div class="flex flex-col gap-8 lg:basis-2/5 lg:grow">
-      <aside class="about-stats">
-        <ul class="key-data">
-          <li><strong>Edad:</strong> 23</li>
-          <li><strong>Idiomas:</strong> Español (Nativo), Inglés (Técnico)</li>
-          <li><strong>Ubicación:</strong> Chiclayo, Perú</li>
-          <li><strong>Rol:</strong> Front-End Developer</li>
-          <li><strong>Rol Secundario:</strong> Analista de Sistemas</li>
+    <div class="flex flex-col gap-4 lg:basis-3/5 lg:grow">
+      <aside class="p-6 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+        <ul class="list-none p-0 m-0 mb-3">
+          <li class="pb-2"><strong>Edad:</strong> 23</li>
+          <li class="pb-2">
+            <strong>Idiomas:</strong> Español (Nativo), Inglés (Técnico)
+          </li>
+          <li class="pb-2"><strong>Ubicación:</strong> Chiclayo, Perú</li>
+          <li class="pb-2"><strong>Rol:</strong> Front-End Developer</li>
+          <li class="pb-2">
+            <strong>Rol Secundario:</strong> Analista de Sistemas
+          </li>
         </ul>
 
-        <h3>Aptitudes</h3>
-        <ul class="skills">
-          <li>Liderazgo</li>
-          <li>Trabajo en Equipo</li>
-          <li>Autoconfianza</li>
-          <li>Escucha Activa</li>
-          <li>Resolución de Problemas</li>
-          <li>Curiosidad Técnica</li>
+        <h3 class="pb-2"><strong>Aptitudes</strong></h3>
+        <ul class="flex flex-wrap gap-2 p-0 m-0 mb-2.5 list-none">
+          <li class="py-1 px-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+            Liderazgo
+          </li>
+          <li class="py-1 px-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+            Trabajo en Equipo
+          </li>
+          <li class="py-1 px-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+            Autoconfianza
+          </li>
+          <li class="py-1 px-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+            Escucha Activa
+          </li>
+          <li class="py-1 px-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+            Resolución de Problemas
+          </li>
+          <li class="py-1 px-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03]">
+            Curiosidad Técnica
+          </li>
         </ul>
 
-        <a class="btn primary" href="/CV.pdf" download>Descargar mi CV (PDF)</a>
+        <a href="/CV.pdf" download>
+          <button
+            type="button"
+            class="text-gray-800 dark:text-white bg-[var(--accent)] hover:bg-[var(--accent)]/90 focus:ring-4 focus:outline-none focus:ring-[var(--accent)]/50 box-border border border-transparent font-medium leading-5 rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-[var(--accent)]/55"
+          >
+            <Link />
+
+            Descargar mi CV (PDF)
+          </button></a
+        >
       </aside>
     </div>
   </div>
