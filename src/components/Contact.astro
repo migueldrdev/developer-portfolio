@@ -4,35 +4,24 @@ import TextArea from "./contact/TextArea.astro";
 import TitleSection from "@components/TitleSection.astro";
 ---
 
-<!-- SECCIÓN: CONTACTO -->
+<!-- SECCIÓN: contact -->
 <section
-  id="contacto"
-  class="scroll-section flex items-center justify-center pt-16 px-4 md:px-0 text-gray-700 dark:text-gray-300"
+  id="contact"
+  class="scroll-section px-4 pt-20 md:px-0 w-full mx-auto container max-w-lg lg:max-w-xl text-gray-700 dark:text-gray-300"
 >
-  <div class="max-w-lg mx-auto text-center w-full">
-    <TitleSection>
-      ¿Trabajamos juntos?
-    </TitleSection>
-    
-    <p class="text-lg mb-8">
-      Estoy disponible para oportunidades freelance o roles full-time. Si tienes
+  <TitleSection> ¿Trabajamos juntos? </TitleSection>
+  <div class="">
+    <p class="text-lg mb-4">
+      Estoy disponible para oportunidades freelance o roles full-time. <br> Si tienes
       un proyecto en mente o quieres saludar, ¡escríbeme!
     </p>
 
     <form id="contact-form" class="space-y-6">
       <div>
-        <Input
-          type="text"
-          placeholder="Tu Nombre"
-          name="name"
-        />
+        <Input type="text" placeholder="Tu Nombre" name="name" />
       </div>
       <div>
-        <Input
-          type="email"
-          placeholder="Tu Email"
-          name="email"
-        />
+        <Input type="email" placeholder="Tu Email" name="email" />
       </div>
 
       <!-- INICIO: Integración Gemini API -->
@@ -66,7 +55,7 @@ import TitleSection from "@components/TitleSection.astro";
       <!-- FIN: Integración Gemini API -->
       <div>
         <TextArea
-          id="mensaje-contacto"
+          id="mensaje-contact"
           placeholder="Tu Mensaje"
           name="message"
           rows="5"
@@ -82,13 +71,13 @@ import TitleSection from "@components/TitleSection.astro";
       </div>
     </form>
 
-    <!-- Íconos de Contacto -->
-    <div class="mt-12 flex justify-center space-x-6 text-2xl">
+    <!-- Íconos de contact -->
+    <div class="mt-12 flex justify-center space-x-6 text-2xl text-black/80 dark:text-white">
       <a
         href="https://www.linkedin.com/in/miguel05dev"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-300 hover:text-[var(--color-extra-light-blue)] transition duration-300"
+        class="hover:text-[var(--color-extra-light-blue)] transition duration-300"
         aria-label="LinkedIn"
       >
         <i class="fab fa-linkedin"></i>
@@ -97,14 +86,14 @@ import TitleSection from "@components/TitleSection.astro";
         href="https://wa.me/+51912096964"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-300 hover:text-[var(--color-extra-light-blue)] transition duration-300"
+        class="hover:text-[var(--color-extra-light-blue)] transition duration-300"
         aria-label="WhatsApp"
       >
         <i class="fab fa-whatsapp"></i>
       </a>
       <a
         href="mailto:miguel05.dev@gmail.com"
-        class="text-gray-300 hover:text-[var(--color-extra-light-blue)] transition duration-300"
+        class="hover:text-[var(--color-extra-light-blue)] transition duration-300"
         aria-label="Email"
       >
         <i class="fas fa-envelope"></i>
@@ -113,7 +102,7 @@ import TitleSection from "@components/TitleSection.astro";
         href="https://www.instagram.com/sr_paradox/"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-300 hover:text-[var(--color-extra-light-blue)] transition duration-300"
+        class="hover:text-[var(--color-extra-light-blue)] transition duration-300"
         aria-label="Instagram"
       >
         <i class="fab fa-instagram"></i>

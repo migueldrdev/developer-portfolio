@@ -1,27 +1,27 @@
 [
   {
-    "id": "inicio",
-    "href": "#inicio",
-    "title": "Inicio"
+    "id": "home",
+    "href": "#home",
+    "title": "Home"
   },
   {
     "id": "about-me",
     "href": "#about-me",
-    "title": "Acerca de mí"
+    "title": "About Me"
   },
   {
-    "id": "habilidades",
-    "href": "#habilidades",
-    "title": "Habilidades"
+    "id": "skills",
+    "href": "#skills",
+    "title": "Skills"
   },
   {
-    "id": "proyectos",
-    "href": "#proyectos",
-    "title": "Proyectos"
+    "id": "projects",
+    "href": "#projects",
+    "title": "Projects"
   },
   {
-    "id": "contacto",
-    "href": "#contacto",
-    "title": "Contacto"
+    "id": "contact",
+    "href": "#contact",
+    "title": "Contact"
   }
 ]
