@@ -15,13 +15,63 @@
     "title": "Skills"
   },
   {
-    "id": "projects",
-    "href": "#projects",
-    "title": "Projects"
+    "id": "experience",
+    "href": "#experience",
+    "title": "Experience",
+    "items": [
+      {
+        "id": "aptitudes",
+        "title": "Aptitudes",
+        "href": "#aptitudes",
+        "current": false
+      },
+      
+      {
+        "id": "more",
+        "title": "Más",
+        "items": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "href": "#",
+            "current": false
+          },
+          {
+            "id": "my-downloads",
+            "title": "My downloads",
+            "href": "#",
+            "current": false
+          },
+          {
+            "id": "billing",
+            "title": "Billing",
+            "href": "#",
+            "current": false
+          },
+          { "id": "rewards", "title": "Rewards", "href": "#", "current": false }
+        ],
+        "current": false
+      },
+      { "id": "conocimientos", "title": "Conocimientos", "href": "#conocimientos", "current": false },
+      {
+        "id": "projects",
+        "title": "Projects",
+        "href": "#projects",
+        "current": false
+      },
+      {
+        "id": "otras-tecnologias",
+        "title": "Otras Tecnologías",
+        "href": "#otras-tecnologias",
+        "current": false,
+        "divider": true
+      }
+    ]
   },
   {
     "id": "contact",
     "href": "#contact",
-    "title": "Contact"
+    "title": "Contact",
+    "current": false
   }
 ]

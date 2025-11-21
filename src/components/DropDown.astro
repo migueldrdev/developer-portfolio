@@ -27,7 +27,7 @@ const placement = isNested ? "right-start" : "bottom";
   class:list={{
     "text-gray-900 hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-blue-700 dark:text-white lg:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 lg:dark:hover:bg-transparent": true,
     // Si NO es anidado, usamos estas clases
-    "flex items-center justify-between w-full rounded-sm font-medium text-heading md:w-auto lg:p-0 lg:w-auto":
+    "flex items-center justify-between w-full rounded-sm font-medium text-heading md:w-auto py-2 px-3 md:p-0 lg:p-0 lg:w-auto":
       !isNested,
     // Si es anidado, ajustamos padding para que parezca sub-item
     "inline-flex items-center justify-between w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded":

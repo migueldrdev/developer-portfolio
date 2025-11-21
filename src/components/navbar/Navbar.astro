@@ -18,43 +18,21 @@ const menuItems = menu.map((item: Menu) => ({
 ---
 
 <nav
-  class="fixed w-full z-20 top-0 start-0 border-b border-transparent transition-all duration-150 flex justify-center"
+  class="fixed w-full z-20 top-0 start-0 border-b border-transparent transition-all duration-150"
 >
-  <!-- bg-red-500 -->
   <div
     id="navbar"
-    class="flex flex-wrap gap-4 items-center justify-end lg:justify-center my-2 px-6 lg:max-w-4xl md:max-w-2xl rounded-4xl rtl:space-x-reverse lg:flex-row lg:border-0"
+    class="flex flex-wrap items-center justify-end md:justify-center md:my-2 p-4 md:px-4  mx-auto max-w-7xl rtl:space-x-reverse"
   >
-    <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
+    <!-- Contenedor de controles (DarkMode + Hamburguesa) -->
+    <div class="flex items-center space-x-3 md:order-2 rtl:space-x-reverse">
       <DarkModeToggle />
 
-      <!-- Como oculto con tamaños exactos con tailwind 
-        sm  = 640px
-        md  = 768px
-        lg  = 1024px
-        xl  = 1280px
-        2xl = 1536px
-
-        Visible solo entre 400px y 800px 
-        <button class="hidden min-[400px]:block max-[800px]:block lg:hidden">
-          Botón específico
-        </button>
-
-        Visible solo en móviles pequeños (menor a 500px) 
-        <button class="block max-[500px]:block min-[500px]:hidden">
-          Móvil pequeño
-        </button>
-
-        Visible solo en tablets (entre 768px y 1024px) 
-        <button class="hidden lg:block lg:hidden">
-          Solo tablets
-        </button>
-      -->
-
+      <!-- Botón hamburguesa: visible solo en móvil (< md) -->
       <button
         data-collapse-toggle="navbar-sticky"
         type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden bg-gray-100 text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:ring-gray-600 transition-colors"
         aria-controls="navbar-sticky"
         aria-expanded="false"
       >
@@ -75,44 +53,27 @@ const menuItems = menu.map((item: Menu) => ({
         </svg>
       </button>
     </div>
+
+    <!-- Menú de navegación -->
     <div
-      class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
       id="navbar-sticky"
     >
       <ul
-        class="flex flex-col font-medium p-4 md:p-0 lg:p-0 mt-4 border border-gray-100 rounded-lg lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0"
+        class="flex flex-col font-medium p-4 md:p-0 mt-4 md:mt-0 bg-gray-50 border border-gray-100 rounded-lg md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:border-0 dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700"
       >
-        {menuItems.map((item: Menu) => <NavbarElement {...item} />)}
+        {
+          menuItems.map((item: Menu) => {
 
-        <DropDown
-          label="Menú"
-          items={[
-            { id: "dashboard", title: "Dashboard", href: "#", current: false },
-            {
-              id: "more",
-              title: "Más",
-              items: [
-                {
-                  id: "overview",
-                  title: "Overview",
-                  href: "#",
-                  current: false,
-                },
-                {
-                  id: "my-downloads",
-                  title: "My downloads",
-                  href: "#",
-                  current: false,
-                },
-                { id: "billing", title: "Billing", href: "#", current: false },
-                { id: "rewards", title: "Rewards", href: "#", current: false },
-              ],
-              current: false,
-            },
-            { id: "earnings", title: "Earnings", href: "#", current: false },
-            { id: "sign-out", title: "Sign out", href: "#", current: false, divider: true},
-          ]}
-        />
+            return item.items && item.items.length > 0 ? (
+              <li>
+                <DropDown label={item.title} items={item.items} />
+              </li>
+            ) : (
+              <NavbarElement {...item} />
+            );
+          })
+        }
       </ul>
     </div>
   </div>
