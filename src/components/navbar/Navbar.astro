@@ -22,17 +22,17 @@ const menuItems = menu.map((item: Menu) => ({
 >
   <div
     id="navbar"
-    class="flex flex-wrap items-center justify-end md:justify-center md:my-2 p-4 md:px-4  mx-auto max-w-7xl rtl:space-x-reverse"
+    class="flex flex-wrap items-center justify-end md:justify-center p-4 md:my-2 md:px-4 md:py-1.5 mx-auto md:max-w-xl md:rounded-xl rtl:space-x-reverse"
   >
     <!-- Contenedor de controles (DarkMode + Hamburguesa) -->
-    <div class="flex items-center space-x-3 md:order-2 rtl:space-x-reverse">
+    <div class="flex items-center space-x-3 md:space-x-0 md:order-2 rtl:space-x-reverse">
       <DarkModeToggle />
 
       <!-- Botón hamburguesa: visible solo en móvil (< md) -->
       <button
         data-collapse-toggle="navbar-sticky"
         type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden bg-gray-100 text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:ring-gray-600 transition-colors"
+        class="inline-flex items-center p-2 justify-center text-sm rounded-lg md:hidden bg-gray-100 text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:ring-gray-600 transition-colors"
         aria-controls="navbar-sticky"
         aria-expanded="false"
       >
