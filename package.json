@@ -11,13 +11,15 @@
     "format": "prettier --write \"src/**/*.{ts,js,astro,css,md}\""
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.5",
     "@fontsource-variable/onest": "^5.2.11",
     "@tailwindcss/vite": "^4.1.15",
     "astro": "^5.15.4",
     "flowbite": "^3.1.2",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.15",
-    "tiny-slider": "^2.9.4"
+    "tiny-slider": "^2.9.4",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "prettier": "^3.6.2"

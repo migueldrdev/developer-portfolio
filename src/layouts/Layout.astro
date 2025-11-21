@@ -1,4 +1,7 @@
 ---
+// 1. IMPORTA EL CSS AQUÍ (Obligatorio para que Astro lo compile bien)
+import "../styles/global.css";
+import 'flowbite';
 import "@fontsource-variable/onest";
 const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } =
   Astro.props;
@@ -23,7 +26,6 @@ const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } =
   </head>
 
   <body class="relative text-black bg-white dark:text-white dark:bg-slate-950">
-    
     <!-- Fondo fijo de cuadrícula (Ibelick) detrás de todo el contenido -->
     <div
       aria-hidden="true"
@@ -46,5 +48,5 @@ const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } =
 
     <slot />
   </body>
-  <script type="module" src="/src/scripts/main.js"></script>
+  <!-- <script type="module" src="/src/scripts/main.js"></script> -->
 </html>

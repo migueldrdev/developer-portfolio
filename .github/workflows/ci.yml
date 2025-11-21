@@ -1,0 +1,36 @@
+name: CI - Calidad del Portafolio
+
+# Esto define cuándo se activa el "guardián"
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga tu código del repositorio
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # 2. Instala Node.js (versión 22 es estable para Astro actual)
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      # 3. Instala las dependencias de forma limpia (rápida y segura)
+      - name: Instalar dependencias
+        run: npm ci
+
+      # 4. Verifica tipos y errores de Astro (Muy útil porque vi que usas TypeScript)
+      - name: Verificación de Astro (Check)
+        run: npx astro check
+
+      # 5. Intenta construir el sitio para asegurar que el build funciona
+      - name: Prueba de Build
+        run: npm run build
