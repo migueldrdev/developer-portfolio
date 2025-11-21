@@ -1,7 +1,18 @@
 ---
+import { Image } from "astro:assets";
 import TitleSection from "@components/TitleSection.astro";
 import Code from "@components/icons/Code.astro";
 import type { Project } from "../interfaces/Project";
+
+// Importar imágenes de proyectos
+import inventoryImg from "@assets/projects/inventory-manager.jpg";
+import portfolioImg from "@assets/projects/developer-portfolio.jpg";
+
+// Mapa de imágenes para acceso dinámico
+const projectImages: Record<string, ImageMetadata> = {
+  "projects/inventory-manager.jpg": inventoryImg,
+  "projects/developer-portfolio.jpg": portfolioImg,
+};
 
 const { projects = [] } = Astro.props as { projects: Array<Project> };
 ---
@@ -17,13 +28,17 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
         projects.map((p: Project) => (
           <article
             data-id={p.id}
-            class="carousel-item flex-shrink-0 w-full p-4"
+            class="carousel-item shrink-0 w-full p-4"
           >
-            <img
-              src={p.image}
+            <Image
+              src={projectImages[p.image]}
               alt={p.title}
               class="w-full h-48 md:h-64 object-cover rounded-md shadow-lg"
+              width={800}
+              height={600}
               loading="lazy"
+              decoding="async"
+              densities={[1, 1.5, 2]}
             />
             <div class="text-left">
               <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-300 mb-2">
@@ -33,7 +48,7 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
             <p class="mb-4">{p.description}</p>
             <div class="flex flex-wrap gap-2 mb-4">
               {p.stack.map((s: string) => (
-                <span class="bg-[var(--color-blue)] text-xs px-2 py-1 rounded">
+                <span class="bg-(--color-blue) text-xs px-2 py-1 rounded">
                   {s}
                 </span>
               ))}

@@ -1,9 +1,9 @@
 const activeClasses = [
   "text-white",
   "bg-blue-700",
-  "lg:bg-transparent",
-  "lg:text-blue-700",
-  "lg:dark:text-blue-500",
+  "md:bg-transparent",
+  "md:text-blue-700",
+  "md:dark:text-blue-500",
 ];
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,7 +1,7 @@
 ---
 import type { Menu } from "../../interfaces/Menu";
 
-const { href, title, current } = Astro.props as Menu;
+const { href, label, current } = Astro.props as Menu;
 const { isDropdownItem = false } = Astro.props;
 ---
 
@@ -13,16 +13,16 @@ const { isDropdownItem = false } = Astro.props;
       "nav-link inline-flex items-center w-full rounded-sm md:text-fg-brand": true,
 
       // estilos cuando está activo
-      "text-white bg-blue-700 lg:bg-transparent lg:text-blue-700 lg:dark:text-blue-500":
+      "text-white  md:bg-transparent md:text-blue-700 md:dark:text-blue-500":
         current,
 
       // estilos cuando NO está activo
-      "text-gray-900 hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-blue-700 dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent":
+      "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent":
         !current,
       // estilos específicos para ítems de dropdown
       "py-2 px-3 md:p-0 lg:p-0": !isDropdownItem,
       "p-2": isDropdownItem,
     }}
-    aria-current={current ? "page" : undefined}>{title}</a
+    aria-current={current ? "page" : undefined}>{label}</a
   >
 </li>

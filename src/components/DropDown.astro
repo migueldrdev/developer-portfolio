@@ -54,7 +54,7 @@ const placement = isNested ? "right-start" : "bottom";
           // RECURSIVIDAD: Si tiene hijos, nos llamamos a nosotros mismos
           // Marcamos isNested={true} para que sepa comportarse como submenú
           <li>
-            <Astro.self label={item.title} items={item.items} isNested />
+            <Astro.self label={item.label} items={item.items} isNested />
           </li>
         ) : (
           // Si no tiene hijos, es un link normal

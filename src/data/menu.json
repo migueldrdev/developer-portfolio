@@ -2,66 +2,39 @@
   {
     "id": "home",
     "href": "#home",
-    "title": "Home"
+    "label": "Home"
   },
   {
     "id": "about-me",
     "href": "#about-me",
-    "title": "About Me"
+    "label": "About Me"
   },
   {
     "id": "skills",
     "href": "#skills",
-    "title": "Skills"
+    "label": "Skills"
   },
   {
     "id": "experience",
     "href": "#experience",
-    "title": "Experience",
+    "label": "Experience",
     "items": [
       {
         "id": "aptitudes",
-        "title": "Aptitudes",
+        "label": "Aptitudes",
         "href": "#aptitudes",
         "current": false
       },
-      
-      {
-        "id": "more",
-        "title": "Más",
-        "items": [
-          {
-            "id": "overview",
-            "title": "Overview",
-            "href": "#",
-            "current": false
-          },
-          {
-            "id": "my-downloads",
-            "title": "My downloads",
-            "href": "#",
-            "current": false
-          },
-          {
-            "id": "billing",
-            "title": "Billing",
-            "href": "#",
-            "current": false
-          },
-          { "id": "rewards", "title": "Rewards", "href": "#", "current": false }
-        ],
-        "current": false
-      },
-      { "id": "conocimientos", "title": "Conocimientos", "href": "#conocimientos", "current": false },
+      { "id": "conocimientos", "label": "Conocimientos", "href": "#conocimientos", "current": false },
       {
         "id": "projects",
-        "title": "Projects",
+        "label": "Projects",
         "href": "#projects",
         "current": false
       },
       {
         "id": "otras-tecnologias",
-        "title": "Otras Tecnologías",
+        "label": "Otras Tecnologías",
         "href": "#otras-tecnologias",
         "current": false,
         "divider": true
@@ -71,7 +44,7 @@
   {
     "id": "contact",
     "href": "#contact",
-    "title": "Contact",
+    "label": "Contact",
     "current": false
   }
 ]

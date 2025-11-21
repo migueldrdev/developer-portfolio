@@ -5,9 +5,6 @@ import DropDown from "@components/DropDown.astro";
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import type { Menu } from "@interfaces/Menu";
 
-// Importar la imagen para optimización
-import miguelImage from "/public/miguelDR05.webp";
-
 const { menu = [] } = Astro.props;
 
 // Convertimos el menú a un estado reactivo (opcional si no se usa JS dinámico)
@@ -67,7 +64,7 @@ const menuItems = menu.map((item: Menu) => ({
 
             return item.items && item.items.length > 0 ? (
               <li>
-                <DropDown label={item.title} items={item.items} />
+                <DropDown label={item.label} items={item.items} />
               </li>
             ) : (
               <NavbarElement {...item} />

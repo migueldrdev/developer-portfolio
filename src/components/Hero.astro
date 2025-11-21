@@ -9,8 +9,8 @@ import LinkedInIcon from "@components/icons/LinkedIn.astro";
 import GitHub from "@components/icons/Github.astro";
 import Cv from "@components/icons/Cv.astro";
 
-// Importar la imagen para optimización
-import miguelImage from "/public/miguelDR05.webp";
+// Importar la imagen para optimización desde src/assets/
+import miguelImage from "@assets/images/miguelDR05.webp";
 
 const personalImageAlt =
   "Miguel Delgado Ruiz - Ingeniero de Software y Desarrollador Front-end";
@@ -24,10 +24,13 @@ const personalImageAlt =
     <div class="flex gap-4 mb-4">
       <Image
         class="rounded-full shadow-lg h-20 w-20 object-cover"
-        src="/miguelDR05.webp"
+        src={miguelImage}
         alt={personalImageAlt}
         width={80}
         height={80}
+        loading="eager"
+        fetchpriority="high"
+        densities={[1, 2]}
       />
       <a
         href="https://www.linkedin.com/in/miguel05dev"
