@@ -1,0 +1,66 @@
+---
+import AngleDown from "@components/icons/AngleDown.astro";
+import NavbarElement from "@components/navbar/NavbarElement.astro";
+import type { Menu } from "@interfaces/Menu";
+
+interface Props {
+  label: string;
+  items: Menu[];
+  isNested?: boolean; // Propiedad para saber si es el nivel principal o un hijo
+}
+
+const { label, items, isNested = false } = Astro.props;
+
+// Generamos IDs únicos para que Flowbite sepa qué botón abre qué lista
+const uniqueId = `dropdown-${crypto.randomUUID()}`;
+const buttonId = `btn-${uniqueId}`;
+
+// Determinamos la posición: Si es anidado va a la derecha (right-start), si es principal va abajo
+const placement = isNested ? "right-start" : "bottom";
+---
+
+<button
+  id={buttonId}
+  data-dropdown-toggle={uniqueId}
+  data-dropdown-placement={placement}
+  type="button"
+  class:list={{
+    "text-gray-900 hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-blue-700 dark:text-white lg:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 lg:dark:hover:bg-transparent": true,
+    // Si NO es anidado, usamos estas clases
+    "flex items-center justify-between w-full rounded-sm font-medium text-heading md:w-auto lg:p-0 lg:w-auto":
+      !isNested,
+    // Si es anidado, ajustamos padding para que parezca sub-item
+    "inline-flex items-center justify-between w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded":
+      isNested,
+  }}
+>
+  {label}
+  <AngleDown class={[{ "-rotate-90": isNested }]} />
+</button>
+
+<div
+  id={uniqueId}
+  class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
+>
+  <ul class="p-2 text-sm text-body font-medium" aria-labelledby={buttonId}>
+    {
+      items.map((item: Menu) => {
+        // Lógica para aplicar el divisor (Sign out, etc.)
+        const liClasses = item.divider
+          ? "border-t border-gray-100 dark:border-gray-600 mt-1 pt-1"
+          : "";
+
+        return item.items && item.items.length > 0 ? (
+          // RECURSIVIDAD: Si tiene hijos, nos llamamos a nosotros mismos
+          // Marcamos isNested={true} para que sepa comportarse como submenú
+          <li>
+            <Astro.self label={item.title} items={item.items} isNested />
+          </li>
+        ) : (
+          // Si no tiene hijos, es un link normal
+          <NavbarElement {...item} isDropdownItem />
+        );
+      })
+    }
+  </ul>
+</div>

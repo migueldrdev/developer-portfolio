@@ -1,0 +1,28 @@
+
+---
+// Extraemos 'class' para manejarla manualmente y guardamos el resto en 'rest'
+const { class: className, ...rest } = Astro.props;
+---
+
+<svg
+  {...rest}
+  class:list={[
+    "w-2.5 h-2.5 ms-2.5", // Clases fijas (tamaño y margen)
+    "transition-transform duration-300", // Opcional: para que rote suavemente
+    className // Aquí se inyectará tu -rotate-90 o lo que envíes
+  ]}
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  fill="none"
+  viewBox="0 0 10 6"
+>
+  <path
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    d="m1 1 4 4 4-4"
+  ></path>
+</svg>

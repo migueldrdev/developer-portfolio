@@ -1,6 +1,8 @@
 export interface Menu {
   id: string;
-  href: string;
+  href?: string;
   title: string;
-  current?: boolean;
+  items?: Menu[];
+  current?: boolean;// Recursividad en los datos
+  divider?: boolean; // <--- La clave para el "Sign out"
 }
