@@ -1,6 +1,10 @@
 [build]
+  # Comando estándar de Astro
   command = "npm run build"
+  # Carpeta donde Astro tira el HTML
   publish = "dist"
 
 [functions]
-  directory = ".netlify/functions-internal"
+  # 👈 ESTO ES LO IMPORTANTE
+  # Le decimos explícitamente dónde buscar las funciones
+  directory = "netlify/functions"
