@@ -1,9 +1,6 @@
 import type { APIRoute } from "astro";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// ESTA LÍNEA ES LA SOLUCIÓN: Le dice a Astro que esto es dinámico
-export const prerender = false;
-
 // Esto corre en el servidor, así que las variables de entorno son seguras aquí
 const API_KEY = import.meta.env.GEMINI_API_KEY;
 

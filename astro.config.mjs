@@ -9,7 +9,7 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   // Configuración para SPA (Single Page Application)
   // Esto maneja correctamente las rutas client-side
-  output: 'static',
+  output: 'server',
 
   image: {
     // Configuración de optimización de imágenes para Astro 5
