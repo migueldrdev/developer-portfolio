@@ -5,6 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  // Configuración para SPA (Single Page Application)
+  // Esto maneja correctamente las rutas client-side
+  output: 'static',
+  
   image: {
     // Configuración de optimización de imágenes para Astro 5
     service: {

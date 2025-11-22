@@ -149,16 +149,23 @@ const { menu = [] } = Astro.props;
       currentSectionId = sections[0].id;
     }
 
-    // Actualizamos clases
+    // Actualizamos clases y URL
     navLinks.forEach((link) => {
       const href = link.getAttribute("href");
       if (!href) return;
 
-      const linkId = href.substring(1); // Quitar el '#'
+      // Extraer ID desde la URL limpia: "/" -> "home", "/skills" -> "skills"
+      const linkId = href === "/" ? "home" : href.substring(1);
 
       if (linkId === currentSectionId) {
         link.classList.add(...activeClasses);
-        link.setAttribute("aria-current", "page"); // Accesibilidad
+        link.setAttribute("aria-current", "page");
+        
+        // Actualizar URL del navegador solo si es diferente (sin recargar)
+        const currentPath = window.location.pathname;
+        if (currentPath !== href) {
+          window.history.replaceState({ section: linkId }, "", href);
+        }
       } else {
         link.classList.remove(...activeClasses);
         link.removeAttribute("aria-current");
@@ -190,30 +197,38 @@ const { menu = [] } = Astro.props;
   };
 
   /**
-   * Configura el Smooth Scroll para enlaces internos
+   * Configura el Smooth Scroll para enlaces internos con URLs limpias (sin #)
+   * Usa History API para mantener URLs profesionales
    */
   const initSmoothScroll = (): void => {
+    // Seleccionar enlaces internos (que empiezan con / y son de la misma página)
     document
-      .querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+      .querySelectorAll<HTMLAnchorElement>('nav a.nav-link')
       .forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
           const href = this.getAttribute("href");
           if (!href) return;
 
-          const targetId = href.substring(1);
+          // Extraer el ID de la sección desde la URL
+          // "/" -> "home", "/skills" -> "skills"
+          const targetId = href === "/" ? "home" : href.substring(1);
           const targetElement = document.getElementById(targetId);
 
           if (targetElement) {
-            const headerOffset = 80; // Ajustar según la altura real de tu navbar
+            const headerOffset = 80;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition =
               elementPosition + window.scrollY - headerOffset;
 
+            // Scroll suave a la sección
             window.scrollTo({
               top: offsetPosition,
               behavior: "smooth",
             });
+
+            // Actualizar URL usando History API
+            window.history.pushState({ section: targetId }, "", href);
 
             // Cerrar menú móvil si está abierto
             const collapseTarget = document.getElementById("navbar-sticky");
@@ -229,6 +244,59 @@ const { menu = [] } = Astro.props;
       });
   };
 
+  /**
+   * Maneja la navegación con botones atrás/adelante del navegador
+   */
+  const handleBrowserNavigation = (): void => {
+    window.addEventListener("popstate", (event) => {
+      if (event.state && event.state.section) {
+        const targetElement = document.getElementById(event.state.section);
+        if (targetElement) {
+          const headerOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.scrollY - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        // Si no hay state, ir al inicio
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  };
+
+  /**
+   * Maneja la navegación inicial cuando se carga la página con una ruta específica
+   * Ejemplo: si cargas /skills directamente, hace scroll a esa sección
+   */
+  const handleInitialNavigation = (): void => {
+    const currentPath = window.location.pathname;
+    
+    // Si no es la raíz, intentar scroll a la sección correspondiente
+    if (currentPath !== '/') {
+      const sectionId = currentPath.substring(1); // /skills -> skills
+      const targetElement = document.getElementById(sectionId);
+      
+      if (targetElement) {
+        // Pequeño delay para asegurar que el DOM está listo
+        setTimeout(() => {
+          const headerOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }, 100);
+      }
+    }
+  };
+
   // --- INICIALIZACIÓN MAESTRA ---
 
   const initNavbar = (): void => {
@@ -237,6 +305,8 @@ const { menu = [] } = Astro.props;
     handleScrollSpy();
     initMobileMenu();
     initSmoothScroll();
+    handleBrowserNavigation();
+    handleInitialNavigation();
 
     // 2. Event Listener para Scroll (Optimizado con requestAnimationFrame)
     let ticking = false;

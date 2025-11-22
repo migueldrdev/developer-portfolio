@@ -1,41 +1,41 @@
 [
   {
     "id": "home",
-    "href": "#home",
+    "href": "/",
     "label": "Home"
   },
   {
     "id": "about-me",
-    "href": "#about-me",
+    "href": "/about-me",
     "label": "About Me"
   },
   {
     "id": "skills",
-    "href": "#skills",
+    "href": "/skills",
     "label": "Skills"
   },
   {
     "id": "experience",
-    "href": "#experience",
+    "href": "/experience",
     "label": "Experience",
     "items": [
       {
         "id": "aptitudes",
         "label": "Aptitudes",
-        "href": "#aptitudes",
+        "href": "/aptitudes",
         "current": false
       },
-      { "id": "conocimientos", "label": "Conocimientos", "href": "#conocimientos", "current": false },
+      { "id": "conocimientos", "label": "Conocimientos", "href": "/conocimientos", "current": false },
       {
         "id": "projects",
         "label": "Projects",
-        "href": "#projects",
+        "href": "/projects",
         "current": false
       },
       {
         "id": "otras-tecnologias",
         "label": "Otras Tecnologías",
-        "href": "#otras-tecnologias",
+        "href": "/otras-tecnologias",
         "current": false,
         "divider": true
       }
@@ -43,7 +43,7 @@
   },
   {
     "id": "contact",
-    "href": "#contact",
+    "href": "/contact",
     "label": "Contact",
     "current": false
   }
