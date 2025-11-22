@@ -23,6 +23,7 @@ import TitleSection from "@components/TitleSection.astro";
       netlify-honeypot="bot-field"
       name="contact"
     >
+      <input type="hidden" name="form-name" value="contact" />
       <p class="hidden">
         <label
           >Don’t fill this out if you’re human: <input
@@ -30,7 +31,6 @@ import TitleSection from "@components/TitleSection.astro";
           /></label
         >
       </p>
-      <input type="hidden" name="form-name" value="contact" />
 
       <div>
         <Input type="text" placeholder="Tu Nombre" name="name" />
@@ -172,6 +172,8 @@ import TitleSection from "@components/TitleSection.astro";
 
       newForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        // UI Loading
         const originalBtnText = submitBtn.innerText;
         submitBtn.disabled = true;
         submitBtn.innerHTML =
@@ -180,6 +182,14 @@ import TitleSection from "@components/TitleSection.astro";
 
         try {
           const formData = new FormData(newForm);
+
+          // 🚨 FUERZA BRUTA: Aseguramos que Netlify sepa qué form es
+          // Si el input hidden falló, esto lo arregla manualmente en el envío
+          if (!formData.has("form-name")) {
+            formData.append("form-name", "contact");
+          }
+
+          // Enviamos usando URLSearchParams (estándar x-www-form-urlencoded)
           const response = await fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -193,7 +203,7 @@ import TitleSection from "@components/TitleSection.astro";
             feedbackMsg.className =
               "block mt-4 p-3 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-lg text-center animate-fade-in";
           } else {
-            throw new Error("Error de red");
+            throw new Error("Error de red: " + response.status);
           }
         } catch (error) {
           console.error(error);
@@ -202,12 +212,13 @@ import TitleSection from "@components/TitleSection.astro";
           feedbackMsg.className =
             "block mt-4 p-3 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg text-center";
         } finally {
+          // Restaurar botón
           const currentBtn = document.getElementById(
             "submit-btn"
           ) as HTMLButtonElement;
           if (currentBtn) {
             currentBtn.disabled = false;
-            currentBtn.textContent = "Enviar Mensaje";
+            currentBtn.innerHTML = originalBtnText; // Restaurar texto original
           }
         }
       });
