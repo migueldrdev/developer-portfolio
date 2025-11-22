@@ -1,17 +1,16 @@
 ---
-import { Image } from "astro:assets";
+// --- SERVER SIDE (Astro) ---
 import NavbarElement from "@components/navbar/NavbarElement.astro";
 import DropDown from "@components/DropDown.astro";
 import DarkModeToggle from "@components/DarkModeToggle.astro";
 import type { Menu } from "@interfaces/Menu";
 
-const { menu = [] } = Astro.props;
+// Definimos las props esperadas
+interface Props {
+  menu: Menu[];
+}
 
-// Convertimos el menú a un estado reactivo (opcional si no se usa JS dinámico)
-const menuItems = menu.map((item: Menu) => ({
-  ...item,
-  current: false, // Inicialmente ningún enlace está activo
-}));
+const { menu = [] } = Astro.props;
 ---
 
 <nav
@@ -21,11 +20,11 @@ const menuItems = menu.map((item: Menu) => ({
     id="navbar"
     class="flex flex-wrap items-center justify-end md:justify-center p-4 md:my-2 md:px-4 md:py-1.5 mx-auto md:max-w-xl md:rounded-xl rtl:space-x-reverse"
   >
-    <!-- Contenedor de controles (DarkMode + Hamburguesa) -->
-    <div class="flex items-center space-x-3 md:space-x-0 md:order-2 rtl:space-x-reverse">
+    <div
+      class="flex items-center space-x-3 md:space-x-0 md:order-2 rtl:space-x-reverse"
+    >
       <DarkModeToggle />
 
-      <!-- Botón hamburguesa: visible solo en móvil (< md) -->
       <button
         data-collapse-toggle="navbar-sticky"
         type="button"
@@ -51,7 +50,6 @@ const menuItems = menu.map((item: Menu) => ({
       </button>
     </div>
 
-    <!-- Menú de navegación -->
     <div
       class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
       id="navbar-sticky"
@@ -60,8 +58,8 @@ const menuItems = menu.map((item: Menu) => ({
         class="flex flex-col font-medium p-4 md:p-0 mt-4 md:mt-0 bg-gray-50 border border-gray-100 rounded-lg md:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:border-0 dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700"
       >
         {
-          menuItems.map((item: Menu) => {
-
+          menu.map((item: Menu) => {
+            // Lógica de renderizado condicional (Dropdown o Link normal)
             return item.items && item.items.length > 0 ? (
               <li>
                 <DropDown label={item.label} items={item.items} />
@@ -76,62 +74,191 @@ const menuItems = menu.map((item: Menu) => ({
   </div>
 </nav>
 
-<script is:inline>
-  // Script para cambiar el navbar al hacer scroll
-  function handleNavbarScroll() {
+<script>
+  // --- CONSTANTES Y TIPOS ---
+
+  // Clases para el estilo activo de los enlaces
+  const activeClasses = [
+    "text-white",
+    "bg-blue-700",
+    "md:bg-transparent",
+    "md:text-blue-700",
+    "md:dark:text-blue-500",
+  ];
+
+  // Clases para el navbar cuando hace scroll (fondo sólido)
+  const scrolledClasses = [
+    "bg-white",
+    "dark:bg-gray-900",
+    "border-gray-200",
+    "dark:border-gray-600",
+    "shadow-md",
+  ];
+
+  // --- FUNCIONES PRINCIPALES ---
+
+  /**
+   * Maneja el aspecto del navbar al hacer scroll (transparente -> sólido)
+   */
+  const handleNavbarAppearance = (): void => {
     const navbar = document.getElementById("navbar");
+    if (!navbar) return;
 
     if (window.scrollY > 20) {
-      // Cuando hay scroll: fondo sólido
-      navbar.classList.add(
-        "bg-white",
-        "dark:bg-gray-900",
-        "border-gray-200",
-        "dark:border-gray-600",
-        "shadow-md"
-      );
+      navbar.classList.add(...scrolledClasses);
       navbar.classList.remove("border-transparent");
     } else {
-      // En la parte superior: transparente
-      navbar.classList.remove(
-        "bg-white",
-        "dark:bg-gray-900",
-        "border-gray-200",
-        "dark:border-gray-600",
-        "shadow-md"
-      );
+      navbar.classList.remove(...scrolledClasses);
       navbar.classList.add("border-transparent");
     }
-  }
+  };
 
-  // Ejecutar al cargar la página
-  handleNavbarScroll();
+  /**
+   * Detecta qué sección está visible y activa el enlace correspondiente
+   */
+  const handleScrollSpy = (): void => {
+    const sections = document.querySelectorAll<HTMLElement>(".scroll-section");
+    const navLinks =
+      document.querySelectorAll<HTMLAnchorElement>("nav a.nav-link");
 
-  // Ejecutar al hacer scroll (con throttle para mejor performance)
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        handleNavbarScroll();
-        ticking = false;
-      });
-      ticking = true;
+    // Offset para compensar la altura del header fijo
+    const headerOffset = 80;
+    const scrollPos = window.scrollY;
+
+    let currentSectionId: string | null = null;
+
+    // Recorremos secciones de abajo hacia arriba para encontrar la activa
+    // (Convertimos NodeList a Array para usar reverse o for loop normal)
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const section = sections[i];
+      const sectionTop = section.offsetTop - headerOffset;
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+        currentSectionId = section.id;
+        break;
+      }
     }
-  });
 
-  // Toggle menú móvil (hamburger)
-  const collapseBtn = document.querySelector(
-    '[data-collapse-toggle="navbar-sticky"]'
-  );
-  const collapseTarget = document.getElementById("navbar-sticky");
-  if (collapseBtn && collapseTarget) {
-    collapseBtn.addEventListener("click", () => {
-      const isHidden = collapseTarget.classList.contains("hidden");
-      collapseTarget.classList.toggle("hidden", !isHidden);
-      const expanded = !isHidden;
-      collapseBtn.setAttribute("aria-expanded", expanded.toString());
+    // Caso especial: Si estamos muy arriba, activar la primera sección
+    if (
+      currentSectionId === null &&
+      sections.length > 0 &&
+      scrollPos < sections[0].offsetTop + sections[0].offsetHeight / 2
+    ) {
+      currentSectionId = sections[0].id;
+    }
+
+    // Actualizamos clases
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href) return;
+
+      const linkId = href.substring(1); // Quitar el '#'
+
+      if (linkId === currentSectionId) {
+        link.classList.add(...activeClasses);
+        link.setAttribute("aria-current", "page"); // Accesibilidad
+      } else {
+        link.classList.remove(...activeClasses);
+        link.removeAttribute("aria-current");
+      }
     });
-  }
-</script>
+  };
 
-<script type="module" src="src/scripts/scroll-spy.js"></script>
+  /**
+   * Maneja el clic en el botón hamburguesa (Móvil)
+   */
+  const initMobileMenu = (): void => {
+    const collapseBtn = document.querySelector<HTMLButtonElement>(
+      '[data-collapse-toggle="navbar-sticky"]'
+    );
+    const collapseTarget = document.getElementById("navbar-sticky");
+
+    if (collapseBtn && collapseTarget) {
+      // Limpiamos listeners anteriores para evitar duplicados en view transitions
+      const newBtn = collapseBtn.cloneNode(true) as HTMLButtonElement;
+      collapseBtn.parentNode?.replaceChild(newBtn, collapseBtn);
+
+      newBtn.addEventListener("click", () => {
+        const isHidden = collapseTarget.classList.contains("hidden");
+        collapseTarget.classList.toggle("hidden", !isHidden); // Toggle hidden
+        collapseTarget.classList.toggle("flex", isHidden); // Toggle flex
+        newBtn.setAttribute("aria-expanded", (!isHidden).toString());
+      });
+    }
+  };
+
+  /**
+   * Configura el Smooth Scroll para enlaces internos
+   */
+  const initSmoothScroll = (): void => {
+    document
+      .querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+      .forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const href = this.getAttribute("href");
+          if (!href) return;
+
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            const headerOffset = 80; // Ajustar según la altura real de tu navbar
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.scrollY - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Cerrar menú móvil si está abierto
+            const collapseTarget = document.getElementById("navbar-sticky");
+            if (
+              collapseTarget &&
+              !collapseTarget.classList.contains("hidden")
+            ) {
+              collapseTarget.classList.add("hidden");
+              collapseTarget.classList.remove("flex");
+            }
+          }
+        });
+      });
+  };
+
+  // --- INICIALIZACIÓN MAESTRA ---
+
+  const initNavbar = (): void => {
+    // 1. Ejecutar lógica inicial
+    handleNavbarAppearance();
+    handleScrollSpy();
+    initMobileMenu();
+    initSmoothScroll();
+
+    // 2. Event Listener para Scroll (Optimizado con requestAnimationFrame)
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleNavbarAppearance();
+          handleScrollSpy();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Removemos listener previo si existe (buena práctica en SPA/Astro)
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll);
+  };
+
+  // Ejecutar al cargar
+  initNavbar();
+
+  // Soporte para View Transitions (Navegación SPA de Astro)
+  document.addEventListener("astro:page-load", initNavbar);
+</script>

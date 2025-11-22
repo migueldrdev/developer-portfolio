@@ -1,7 +1,6 @@
 ---
 // 1. IMPORTA EL CSS AQUÍ (Obligatorio para que Astro lo compile bien)
 import "../styles/global.css";
-import 'flowbite';
 import "@fontsource-variable/onest";
 const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } =
   Astro.props;
@@ -47,6 +46,25 @@ const { title = "Porfolio de Segundo Delgado - Desarrollador Full-Stack" } =
     </div>
 
     <slot />
+
+    <!-- Inicialización de librerías globales -->
+    <script>
+      import { initFlowbite } from 'flowbite';
+
+      /**
+       * Inicializa todas las librerías de terceros necesarias para la aplicación
+       * Se ejecuta al cargar la página y después de cada navegación (View Transitions)
+       */
+      const initGlobalLibraries = (): void => {
+        // Inicializar Flowbite (Dropdowns, Modals, etc.)
+        initFlowbite();
+      };
+
+      // Ejecutar en la carga inicial
+      initGlobalLibraries();
+
+      // Reinicializar después de navegaciones con View Transitions
+      document.addEventListener("astro:page-load", initGlobalLibraries);
+    </script>
   </body>
-  <!-- <script type="module" src="/src/scripts/main.js"></script> -->
 </html>

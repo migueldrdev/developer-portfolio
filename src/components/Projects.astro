@@ -5,7 +5,7 @@ import Code from "@components/icons/Code.astro";
 import type { Project } from "../interfaces/Project";
 
 // 1. IMPORTANTE: El CSS se queda aquí arriba (Astro lo optimiza)
-import 'tiny-slider/dist/tiny-slider.css';
+import "tiny-slider/dist/tiny-slider.css";
 
 import inventoryImg from "@assets/projects/inventory-manager.jpg";
 import portfolioImg from "@assets/projects/developer-portfolio.jpg";
@@ -24,14 +24,11 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
 >
   <div class="w-full text-left">
     <TitleSection> <Code /> Proyectos </TitleSection>
-    
+
     <div class="my-slider flex transition-transform duration-500 ease-in-out">
       {
         projects.map((p: Project) => (
-          <article
-            data-id={p.id}
-            class="carousel-item shrink-0 w-full p-4"
-          >
+          <article data-id={p.id} class="carousel-item shrink-0 w-full p-4">
             <Image
               src={projectImages[p.image]}
               alt={p.title}
@@ -80,15 +77,16 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
   </div>
 </section>
 
+<!-- En astro typescript esta por defecto -->
 <script>
   // @ts-ignore - tiny-slider a veces no tiene tipos oficiales instalados, esto evita que TS se queje del import.
-  import { tns } from 'tiny-slider';
+  import { tns } from "tiny-slider";
 
   // Definimos la función con void porque no retorna nada
   const initSlider = (): void => {
     // 1. Selección segura del DOM con Generics <HTMLElement>
     // Le decimos a TS: "Espero que esto sea un elemento HTML, pero puede ser null"
-    const container = document.querySelector<HTMLElement>('.my-slider');
+    const container = document.querySelector<HTMLElement>(".my-slider");
 
     // 2. Guard Clause (Cláusula de guardia)
     // Si el contenedor es null (no existe en esta página), paramos la ejecución.
@@ -97,7 +95,7 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
 
     // 3. Evitar doble inicialización
     // tiny-slider añade clases al contenedor. Si ya tiene 'tns-slider', no lo volvemos a crear.
-    if (container.classList.contains('tns-slider')) return;
+    if (container.classList.contains("tns-slider")) return;
 
     // 4. Inicialización
     try {
@@ -105,7 +103,7 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
         container: container, // Pasamos el elemento HTML directo, es más seguro que el string
         items: 1,
         gutter: 20,
-        slideBy: 'page',
+        slideBy: "page",
         autoplay: false,
         controls: true,
         nav: false,
@@ -113,13 +111,13 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
         responsive: {
           640: { items: 1 },
           768: { items: 2 },
-          1024: { items: 3 }
+          1024: { items: 3 },
         },
-        controlsText: ['◀', '▶']
+        controlsText: ["◀", "▶"],
       });
-      console.log('Slider inicializado correctamente');
+      console.log("Slider inicializado correctamente");
     } catch (error) {
-      console.error('Error al iniciar tiny-slider:', error);
+      console.error("Error al iniciar tiny-slider:", error);
     }
   };
 
@@ -127,5 +125,5 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
   initSlider();
 
   // RECOMENDADO: Soporte para View Transitions (si Astro navega entre páginas sin recargar)
-  document.addEventListener('astro:page-load', initSlider);
+  document.addEventListener("astro:page-load", initSlider);
 </script>
