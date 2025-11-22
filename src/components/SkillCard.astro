@@ -1,30 +1,25 @@
 ---
-import type { Skill } from '@interfaces/Skill';
+import type { Skill } from "@interfaces/Skill";
 const { skill } = Astro.props as Skill;
 ---
 
-<div class="group w-full aspect-square relative perspective">
+<div class="skill-card group w-full aspect-square relative perspective">
   <div
-    class="
-      relative w-40 h-40 
-      transition-transform duration-700 
-      preserve-3d 
-      group-hover:rotate-y-180
-      rounded-xl 
-      shadow-md 
+    class="skill-card-inner relative w-40 h-40
+      transition-transform duration-700
+      preserve-3d
+      md:group-hover:rotate-y-180
+      rounded-xl
+      shadow-md
       bg-white/5 dark:bg-white/5
-      border border-black/10 dark:border-white/10
-    "
+      border border-black/10 dark:border-white/10"
   >
-
     <!-- FRONT -->
     <div
-      class="
-        absolute inset-0 
-        backface-hidden 
+      class="absolute inset-0
+        backface-hidden
         flex flex-col items-center justify-center gap-3
-        p-4 rounded-xl
-      "
+        p-4 rounded-xl"
     >
       <img
         src={skill.icon}
@@ -37,17 +32,51 @@ const { skill } = Astro.props as Skill;
 
     <!-- BACK -->
     <div
-      class="
-        absolute inset-0 
-        rotate-y-180 
-        backface-hidden 
+      class="absolute inset-0
+        rotate-y-180
+        backface-hidden
         flex flex-col items-center justify-center
         p-4 rounded-xl
-        text-sm
-      "
+        text-sm"
     >
       <p class="text-center">{skill.description}</p>
     </div>
-
   </div>
 </div>
+
+<script>
+  /**
+   * Maneja el flip de las tarjetas de habilidades en dispositivos táctiles
+   * En desktop usa hover (CSS), en móvil usa click/tap (JS)
+   */
+  const initSkillCards = (): void => {
+    const cards = document.querySelectorAll<HTMLElement>(".skill-card");
+
+    cards.forEach((card) => {
+      const inner = card.querySelector<HTMLElement>(".skill-card-inner");
+      if (!inner) return;
+
+      // Detectar click/tap para dispositivos móviles
+      card.addEventListener("click", (e) => {
+        e.stopPropagation();
+        
+        // Toggle de la rotación
+        inner.classList.toggle("rotate-y-180");
+      });
+    });
+
+    // Cerrar todas las tarjetas cuando se hace click fuera
+    document.addEventListener("click", () => {
+      const allInners = document.querySelectorAll<HTMLElement>(".skill-card-inner");
+      allInners.forEach((inner) => {
+        inner.classList.remove("rotate-y-180");
+      });
+    });
+  };
+
+  // Ejecutar al cargar
+  initSkillCards();
+
+  // Reinicializar después de navegaciones (View Transitions)
+  document.addEventListener("astro:page-load", initSkillCards);
+</script>
