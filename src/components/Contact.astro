@@ -262,7 +262,15 @@ import TitleSection from "@components/TitleSection.astro";
         try {
           // --- AQUÍ ESTÁ LA MAGIA ---
           // Ya no llamamos a Google directamente. Llamamos a TU servidor en Astro.
-          const response = await fetch("/api/ask-gemini", {
+          // const response = await fetch("/api/ask-gemini", {
+          //   method: "POST",
+          //   headers: { "Content-Type": "application/json" },
+          //   body: JSON.stringify({ userPrompt: prompt }),
+          // });
+
+          // NUEVA LLAMADA A TU FUNCIÓN SERVERLESS EN NETLIFY
+          const response = await fetch("/.netlify/functions/gemini", {
+            // 👈 Fíjate en el punto inicial
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userPrompt: prompt }),
