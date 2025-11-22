@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.5",
+    "@astrojs/netlify": "^6.6.2",
     "@fontsource-variable/onest": "^5.2.11",
+    "@google/generative-ai": "^0.24.1",
     "@tailwindcss/vite": "^4.1.15",
     "astro": "^5.15.4",
     "flowbite": "^3.1.2",

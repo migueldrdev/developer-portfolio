@@ -4,7 +4,6 @@ import TextArea from "./contact/TextArea.astro";
 import TitleSection from "@components/TitleSection.astro";
 ---
 
-<!-- SECCIÓN: contact -->
 <section
   id="contact"
   class="scroll-section px-4 pt-25 md:px-0 w-full mx-auto container max-w-lg lg:max-w-xl text-gray-700 dark:text-gray-300"
@@ -12,11 +11,27 @@ import TitleSection from "@components/TitleSection.astro";
   <TitleSection> ¿Trabajamos juntos? </TitleSection>
   <div class="">
     <p class="text-lg mb-4">
-      Estoy disponible para oportunidades freelance o roles full-time. <br> Si tienes
-      un proyecto en mente o quieres saludar, ¡escríbeme!
+      Estoy disponible para oportunidades freelance o roles full-time. <br /> Si
+      tienes un proyecto en mente o quieres saludar, ¡escríbeme!
     </p>
 
-    <form id="contact-form" class="space-y-6">
+    <form
+      id="contact-form"
+      class="space-y-6"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      name="contact"
+    >
+      <p class="hidden">
+        <label
+          >Don’t fill this out if you’re human: <input
+            name="bot-field"
+          /></label
+        >
+      </p>
+      <input type="hidden" name="form-name" value="contact" />
+
       <div>
         <Input type="text" placeholder="Tu Nombre" name="name" />
       </div>
@@ -24,35 +39,61 @@ import TitleSection from "@components/TitleSection.astro";
         <Input type="email" placeholder="Tu Email" name="email" />
       </div>
 
-      <!-- INICIO: Integración Gemini API -->
-      <div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+      >
         <label
           for="mensaje-prompt"
-          class="block text-sm font-medium mb-2 text-left"
-          >¿Ayuda para redactar? (ej: "Ofrecer un trabajo frontend")</label
+          class="block text-sm font-medium mb-2 text-left text-sky-600 dark:text-sky-400"
         >
+          ✨ Asistente IA: ¿Qué quieres decirme?
+        </label>
         <div class="flex flex-col sm:flex-row gap-2">
-          <Input
+          <input
             type="text"
             id="mensaje-prompt"
-            placeholder="Describe tu intención..."
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder="Ej: Ofrecer un puesto de Frontend con React..."
           />
           <button
             type="button"
             id="generar-mensaje-btn"
-            class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition duration-300 w-full sm:w-auto"
+            class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            ✨ Generar
+            <span>Generar</span>
+            <i class="fas fa-magic"></i>
           </button>
         </div>
+
         <p
           id="gemini-loading"
-          class="text-sky-400 text-sm mt-2 text-left hidden"
+          class="text-sky-500 text-xs mt-2 text-left hidden items-center gap-2"
         >
-          Generando borrador...
+          <svg
+            class="animate-spin h-4 w-4 text-sky-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          Redactando borrador inteligente...
+        </p>
+        <p id="gemini-error" class="text-red-500 text-xs mt-2 text-left hidden">
         </p>
       </div>
-      <!-- FIN: Integración Gemini API -->
+
       <div>
         <TextArea
           id="mensaje-contact"
@@ -61,62 +102,196 @@ import TitleSection from "@components/TitleSection.astro";
           rows="5"
         />
       </div>
+
+      <div
+        id="form-feedback"
+        class="hidden text-center p-3 rounded-lg text-sm font-medium"
+      >
+      </div>
+
       <div>
         <button
           type="submit"
-          class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+          id="submit-btn"
+          class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 cursor-pointer disabled:opacity-70"
         >
           Enviar Mensaje
         </button>
       </div>
     </form>
 
-    <!-- Íconos de contact -->
-    <div class="mt-12 flex justify-center space-x-6 text-2xl text-black/80 dark:text-white">
+    <div
+      class="mt-12 flex justify-center space-x-6 text-2xl text-black/80 dark:text-white"
+    >
       <a
         href="https://www.linkedin.com/in/miguel05dev"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-(--color-extra-light-blue) transition duration-300"
-        aria-label="LinkedIn"
+        class="hover:text-sky-500 transition duration-300"
+        ><i class="fab fa-linkedin"></i></a
       >
-        <i class="fab fa-linkedin"></i>
-      </a>
       <a
         href="https://wa.me/+51912096964"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-(--color-extra-light-blue) transition duration-300"
-        aria-label="WhatsApp"
+        class="hover:text-green-500 transition duration-300"
+        ><i class="fab fa-whatsapp"></i></a
       >
-        <i class="fab fa-whatsapp"></i>
-      </a>
       <a
         href="mailto:miguel05.dev@gmail.com"
-        class="hover:text-(--color-extra-light-blue) transition duration-300"
-        aria-label="Email"
+        class="hover:text-red-500 transition duration-300"
+        ><i class="fas fa-envelope"></i></a
       >
-        <i class="fas fa-envelope"></i>
-      </a>
       <a
         href="https://www.instagram.com/sr_paradox/"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-(--color-extra-light-blue) transition duration-300"
-        aria-label="Instagram"
+        class="hover:text-pink-500 transition duration-300"
+        ><i class="fab fa-instagram"></i></a
       >
-        <i class="fab fa-instagram"></i>
-      </a>
     </div>
   </div>
 </section>
 
-<script type="module" src="src/scripts/gemini-api.js"></script>
+<script>
+  // --- LOGIC START ---
 
-<style>
-  /* Estilo para el botón de generar deshabilitado */
-  #generar-mensaje-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-</style>
+  const initContactComponent = () => {
+    // 1. LÓGICA DE ENVÍO DE FORMULARIO (NETLIFY)
+    const form = document.getElementById(
+      "contact-form"
+    ) as HTMLFormElement | null;
+    const submitBtn = document.getElementById(
+      "submit-btn"
+    ) as HTMLButtonElement | null;
+    const feedbackMsg = document.getElementById("form-feedback");
+
+    if (form && submitBtn && feedbackMsg) {
+      const newForm = form.cloneNode(true) as HTMLFormElement;
+      form.parentNode?.replaceChild(newForm, form);
+
+      newForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML =
+          '<i class="fas fa-circle-notch fa-spin"></i> Enviando...';
+        feedbackMsg.classList.add("hidden");
+
+        try {
+          const formData = new FormData(newForm);
+          const response = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData as any).toString(),
+          });
+
+          if (response.ok) {
+            newForm.reset();
+            feedbackMsg.textContent =
+              "¡Mensaje enviado con éxito! Te responderé pronto.";
+            feedbackMsg.className =
+              "block mt-4 p-3 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-lg text-center animate-fade-in";
+          } else {
+            throw new Error("Error de red");
+          }
+        } catch (error) {
+          console.error(error);
+          feedbackMsg.textContent =
+            "Hubo un error al enviar. Por favor, contáctame por LinkedIn.";
+          feedbackMsg.className =
+            "block mt-4 p-3 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg text-center";
+        } finally {
+          const currentBtn = document.getElementById(
+            "submit-btn"
+          ) as HTMLButtonElement;
+          if (currentBtn) {
+            currentBtn.disabled = false;
+            currentBtn.textContent = "Enviar Mensaje";
+          }
+        }
+      });
+    }
+
+    // 2. LÓGICA DE GEMINI AI (AHORA USA TU API INTERNA)
+    const generarBtn = document.getElementById(
+      "generar-mensaje-btn"
+    ) as HTMLButtonElement | null;
+    const promptInput = document.getElementById(
+      "mensaje-prompt"
+    ) as HTMLInputElement | null;
+    const mensajeTextarea = document.getElementById(
+      "mensaje-contact"
+    ) as HTMLTextAreaElement | null;
+    const loadingText = document.getElementById("gemini-loading");
+    const errorText = document.getElementById("gemini-error");
+
+    if (
+      generarBtn &&
+      promptInput &&
+      mensajeTextarea &&
+      loadingText &&
+      errorText
+    ) {
+      const generateText = async () => {
+        const prompt = promptInput.value.trim();
+        if (!prompt) {
+          promptInput.classList.add("ring-2", "ring-red-500");
+          setTimeout(
+            () => promptInput.classList.remove("ring-2", "ring-red-500"),
+            2000
+          );
+          return;
+        }
+
+        loadingText.classList.remove("hidden");
+        errorText.classList.add("hidden");
+        generarBtn.disabled = true;
+
+        try {
+          // --- AQUÍ ESTÁ LA MAGIA ---
+          // Ya no llamamos a Google directamente. Llamamos a TU servidor en Astro.
+          const response = await fetch("/api/ask-gemini", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userPrompt: prompt }),
+          });
+
+          if (!response.ok) throw new Error("Error en el servidor de IA");
+
+          const data = await response.json();
+
+          if (data.text) {
+            mensajeTextarea.value = data.text.trim();
+            mensajeTextarea.style.height = "auto";
+            mensajeTextarea.style.height = mensajeTextarea.scrollHeight + "px";
+          } else {
+            throw new Error("No se generó texto");
+          }
+        } catch (error) {
+          console.error(error);
+          errorText.textContent =
+            "Error al conectar con el asistente. Intenta de nuevo.";
+          errorText.classList.remove("hidden");
+        } finally {
+          loadingText.classList.add("hidden");
+          generarBtn.disabled = false;
+        }
+      };
+
+      const newGenBtn = generarBtn.cloneNode(true) as HTMLButtonElement;
+      generarBtn.parentNode?.replaceChild(newGenBtn, generarBtn);
+      newGenBtn.addEventListener("click", generateText);
+
+      promptInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          newGenBtn.click();
+        }
+      });
+    }
+  };
+
+  initContactComponent();
+  document.addEventListener("astro:page-load", initContactComponent);
+</script>
