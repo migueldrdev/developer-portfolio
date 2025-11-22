@@ -4,11 +4,12 @@ import TitleSection from "@components/TitleSection.astro";
 import Code from "@components/icons/Code.astro";
 import type { Project } from "../interfaces/Project";
 
-// Importar imágenes de proyectos
+// 1. IMPORTANTE: El CSS se queda aquí arriba (Astro lo optimiza)
+import 'tiny-slider/dist/tiny-slider.css';
+
 import inventoryImg from "@assets/projects/inventory-manager.jpg";
 import portfolioImg from "@assets/projects/developer-portfolio.jpg";
 
-// Mapa de imágenes para acceso dinámico
 const projectImages: Record<string, ImageMetadata> = {
   "projects/inventory-manager.jpg": inventoryImg,
   "projects/developer-portfolio.jpg": portfolioImg,
@@ -23,6 +24,7 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
 >
   <div class="w-full text-left">
     <TitleSection> <Code /> Proyectos </TitleSection>
+    
     <div class="my-slider flex transition-transform duration-500 ease-in-out">
       {
         projects.map((p: Project) => (
@@ -48,28 +50,28 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
             <p class="mb-4">{p.description}</p>
             <div class="flex flex-wrap gap-2 mb-4">
               {p.stack.map((s: string) => (
-                <span class="bg-(--color-blue) text-xs px-2 py-1 rounded">
+                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-300">
                   {s}
                 </span>
               ))}
             </div>
             <div class="mt-3 flex gap-3">
-              {p.demo ? (
+              {p.demo && (
                 <a
                   href={p.demo}
-                  class="hover:text-white font-medium flex items-center gap-2"
+                  class="hover:text-blue-600 font-medium flex items-center gap-2 transition-colors"
                 >
                   Ver Demo <i class="fas fa-external-link-alt text-sm" />
                 </a>
-              ) : null}
-              {p.github ? (
+              )}
+              {p.github && (
                 <a
                   href={p.github}
-                  class="hover:text-white font-medium flex items-center gap-2"
+                  class="hover:text-blue-600 font-medium flex items-center gap-2 transition-colors"
                 >
                   Ver Código <i class="fas fa-code text-sm" />
                 </a>
-              ) : null}
+              )}
             </div>
           </article>
         ))
@@ -78,12 +80,52 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
   </div>
 </section>
 
-<script type="module" is:inline>
-  import { initSlider } from "/src/scripts/slider-init.js";
-  if (typeof window !== "undefined") {
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("Projects component: DOMContentLoaded -> initSlider()");
-      initSlider();
-    });
-  }
+<script>
+  // @ts-ignore - tiny-slider a veces no tiene tipos oficiales instalados, esto evita que TS se queje del import.
+  import { tns } from 'tiny-slider';
+
+  // Definimos la función con void porque no retorna nada
+  const initSlider = (): void => {
+    // 1. Selección segura del DOM con Generics <HTMLElement>
+    // Le decimos a TS: "Espero que esto sea un elemento HTML, pero puede ser null"
+    const container = document.querySelector<HTMLElement>('.my-slider');
+
+    // 2. Guard Clause (Cláusula de guardia)
+    // Si el contenedor es null (no existe en esta página), paramos la ejecución.
+    // Esto elimina los errores en consola si el componente no se renderiza.
+    if (!container) return;
+
+    // 3. Evitar doble inicialización
+    // tiny-slider añade clases al contenedor. Si ya tiene 'tns-slider', no lo volvemos a crear.
+    if (container.classList.contains('tns-slider')) return;
+
+    // 4. Inicialización
+    try {
+      tns({
+        container: container, // Pasamos el elemento HTML directo, es más seguro que el string
+        items: 1,
+        gutter: 20,
+        slideBy: 'page',
+        autoplay: false,
+        controls: true,
+        nav: false,
+        mouseDrag: true,
+        responsive: {
+          640: { items: 1 },
+          768: { items: 2 },
+          1024: { items: 3 }
+        },
+        controlsText: ['◀', '▶']
+      });
+      console.log('Slider inicializado correctamente');
+    } catch (error) {
+      console.error('Error al iniciar tiny-slider:', error);
+    }
+  };
+
+  // Ejecutamos al cargar
+  initSlider();
+
+  // RECOMENDADO: Soporte para View Transitions (si Astro navega entre páginas sin recargar)
+  document.addEventListener('astro:page-load', initSlider);
 </script>
