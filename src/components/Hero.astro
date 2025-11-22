@@ -56,7 +56,7 @@ const personalImageAlt =
     </p>
     <!-- Sociales -->
     <div class="mt-8 flex flex-wrap gap-4 justify-start">
-      <SocialBadge href="#contact">
+      <SocialBadge href="/contact" data-scroll-link>
         <MailIcon class="size-4" />
         Contáctame
       </SocialBadge>
@@ -102,3 +102,60 @@ const personalImageAlt =
     </div>
   </div>
 </section>
+
+<script>
+  /**
+   * Maneja el scroll suave hacia secciones internas con URLs limpias (sin #)
+   * Este script intercepta los clics en enlaces con data-scroll-link
+   * y navega suavemente sin recargar la página
+   */
+  const initHeroScrollLinks = (): void => {
+    // Seleccionar todos los enlaces con el atributo data-scroll-link
+    const scrollLinks = document.querySelectorAll<HTMLAnchorElement>(
+      "[data-scroll-link]"
+    );
+
+    scrollLinks.forEach((link) => {
+      // Crear un nuevo elemento para evitar duplicar listeners en view transitions
+      const newLink = link.cloneNode(true) as HTMLAnchorElement;
+      link.parentNode?.replaceChild(newLink, link);
+
+      newLink.addEventListener("click", function (e) {
+        e.preventDefault(); // Evitar navegación tradicional
+        
+        const href = this.getAttribute("href");
+        if (!href) return;
+
+        // Extraer el ID de la sección desde la URL
+        // Ejemplo: "/contact" -> "contact"
+        const sectionId = href.substring(1);
+        const targetElement = document.getElementById(sectionId);
+
+        if (targetElement) {
+          // Offset para compensar la altura del navbar fijo (80px)
+          const headerOffset = 80;
+          
+          // Calcular la posición del elemento
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+          // Hacer scroll suave a la sección
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+
+          // Actualizar URL del navegador sin recargar la página
+          // Esto permite que el usuario pueda compartir el enlace o usar atrás/adelante
+          window.history.pushState({ section: sectionId }, "", href);
+        }
+      });
+    });
+  };
+
+  // Ejecutar cuando carga la página
+  initHeroScrollLinks();
+
+  // Re-ejecutar cuando Astro hace transiciones de página (SPA)
+  document.addEventListener("astro:page-load", initHeroScrollLinks);
+</script>

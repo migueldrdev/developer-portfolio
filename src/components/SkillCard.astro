@@ -23,9 +23,12 @@ const { skill } = Astro.props as Skill;
     >
       <img
         src={skill.icon}
-        alt={skill.name}
+        alt={`Ícono de ${skill.name}`}
         class="w-14 h-14 object-contain opacity-90"
         loading="lazy"
+        width="56"
+        height="56"
+        decoding="async"
       />
       <p class="font-semibold text-lg text-center">{skill.name}</p>
     </div>
