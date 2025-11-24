@@ -8,9 +8,7 @@
 
 ## 🖼️ Preview
 
-![Portfolio Banner](https://via.placeholder.com/800x400?text=Portfolio+Screenshot+Here)
-
-**[🔗 Live Demo](https://tu-dominio-aqui.com)**
+[![Vista Previa de mi Portafolio](./preview.png)](https://porfolio-migueldr05.netlify.app/)
 
 ## 🚀 Key Features
 
@@ -62,7 +60,7 @@ To run this project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/miguelDR05/developer-portfolio.git](https://github.com/miguelDR05/developer-portfolio.git)
+   git clone https://github.com/miguelDR05/developer-portfolio.git
    cd developer-portfolio
    ```
    
