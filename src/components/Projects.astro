@@ -4,9 +4,6 @@ import TitleSection from "@components/TitleSection.astro";
 import Code from "@components/icons/Code.astro";
 import type { Project } from "../interfaces/Project";
 
-// 1. IMPORTANTE: El CSS se queda aquí arriba (Astro lo optimiza)
-import "tiny-slider/dist/tiny-slider.css";
-
 import inventoryImg from "@assets/projects/inventory-manager.jpg";
 import portfolioImg from "@assets/projects/developer-portfolio.jpg";
 
@@ -15,7 +12,37 @@ const projectImages: Record<string, ImageMetadata> = {
   "projects/developer-portfolio.jpg": portfolioImg,
 };
 
-const { projects = [] } = Astro.props as { projects: Array<Project> };
+const projects = [
+  {
+    type: "personal",
+    title: "Gestor de Inventarios SaaS",
+    description:
+      "Aplicación full-stack para administración de stock en tiempo real. Implementé autenticación multi-tenant y reportes dinámicos para PYMES.",
+    image: "projects/inventory-manager.jpg",
+    tags: ["Laravel", "Vue.js", "MySQL", "Tailwind"],
+    demoLink: "https://tu-demo.com",
+    codeLink: "https://github.com/tu-usuario/repo",
+    highlight: true,
+  },
+  {
+    type: "client",
+    category: "Sector FinTech / Banca",
+    title: "Migración de Banca Online Corporativa",
+    description:
+      "Desafío: Modernizar una plataforma legacy lenta con 100k usuarios diarios. Solución: Lideré el frontend migrando a una SPA modular con React y Redux. Resultado: Reducción del 70% en tiempos de carga y cero downtime.",
+    abstractIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 opacity-50" viewBox="0 0 24 24"><path fill="currentColor" d="M11.5 1L2 6v2h19V6l-9.5-5zM2 22h19v-3H2v3zm2-5h3v-9H4v9zm5 0h3v-9H9v9zm5 0h3v-9h-3v9zm5 0h3v-9h-3v9z"/></svg>`,
+    tags: ["React", "Redux", "Node.js", "Docker Enterprise"],
+  },
+  {
+    type: "personal",
+    title: "Portfolio Personal (Astro)",
+    description:
+      "Sitio estático optimizado al máximo rendimiento. Uso de Astro Islands para hidratar componentes interactivos solo cuando es necesario.",
+    image: "projects/developer-portfolio.jpg",
+    tags: ["Astro 5", "TypeScript", "Tailwind CSS"],
+    codeLink: "https://github.com/tu-usuario/portfolio",
+  },
+];
 ---
 
 <section
@@ -23,105 +50,167 @@ const { projects = [] } = Astro.props as { projects: Array<Project> };
   class="scroll-section px-4 pt-25 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl text-gray-700 dark:text-gray-300"
 >
   <div class="w-full text-left">
-    <TitleSection> <Code /> Proyectos </TitleSection>
+    <TitleSection> <Code class="size-8" /> Proyectos Destacados </TitleSection>
 
-    <div class="my-slider flex transition-transform duration-500 ease-in-out">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
-        projects.map((p: Project) => (
-          <article data-id={p.id} class="carousel-item shrink-0 w-full pt-4">
-            <Image
-              src={projectImages[p.image]}
-              alt={p.title}
-              class="w-full h-48 md:h-64 object-cover rounded-md shadow-lg mb-2"
-              width={800}
-              height={600}
-              loading="lazy"
-              decoding="async"
-              densities={[1, 1.5, 2]}
-            />
-            <h3 class="text-left text-2xl font-bold text-gray-700 dark:text-gray-300 mb-2">
-              {p.title}
-            </h3>
-            <p class="mb-4">{p.description}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              {p.stack.map((s: string) => (
-                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-300">
-                  {s}
-                </span>
-              ))}
-            </div>
-            <div class="mt-3 flex gap-3">
-              {p.demo && (
-                <a
-                  href={p.demo}
-                  class="hover:text-blue-600 font-medium flex items-center gap-2 transition-colors"
-                >
-                  Ver Demo <i class="fas fa-external-link-alt text-sm" />
-                </a>
+        projects.map((project) => (
+          <article
+            class={`
+            group relative flex flex-col overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md
+            ${project.highlight ? "border-blue-500/50 dark:border-blue-400/50 ring-1 ring-blue-500/20" : "border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"}
+          `}
+          >
+            {/* HEADER DE LA TARJETA */}
+            <div
+              class={`
+            relative h-48 overflow-hidden
+            ${project.type === "client" ? "bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center text-gray-400 dark:text-gray-500 p-6" : ""}
+          `}
+            >
+              {/* Lógica condicional corregida: Usamos Fragments <> para devolver múltiples elementos */}
+
+              {project.type === "personal" && project.image && (
+                <div class="w-full h-full bg-gray-100 dark:bg-gray-800 p-3 flex items-end justify-center group-hover:bg-blue-50 dark:group-hover:bg-gray-800/50 transition-colors">
+                  <div class="relative w-full h-[90%] rounded-t-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 bg-white">
+                    <div class="h-4 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center px-2 gap-1">
+                      <div class="w-2 h-2 rounded-full bg-red-400" />
+                      <div class="w-2 h-2 rounded-full bg-yellow-400" />
+                      <div class="w-2 h-2 rounded-full bg-green-400" />
+                    </div>
+
+                    <Image
+                      src={projectImages[project.image]}
+                      alt={project.title}
+                      class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                      densities={[1, 1.5, 2]}
+                    />
+                  </div>
+                </div>
               )}
-              {p.github && (
-                <a
-                  href={p.github}
-                  class="hover:text-blue-600 font-medium flex items-center gap-2 transition-colors"
-                >
-                  Ver Código <i class="fas fa-code text-sm" />
-                </a>
+
+              {project.type === "client" && (
+                <div class="text-center">
+                  <div
+                    class="mb-2 flex justify-center"
+                    set:html={project.abstractIcon}
+                  />
+                  <span class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    Estudio de Caso: {project.category}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* CUERPO DE LA TARJETA */}
+            <div class="flex-1 p-6 flex flex-col">
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white leading-tight">
+                {project.title}
+              </h3>
+
+              <p
+                class={`
+              text-sm mb-6 flex-1
+              ${project.type === "client" ? "text-gray-700 dark:text-gray-300 font-medium" : "text-gray-600 dark:text-gray-400"}
+            `}
+              >
+                {project.description}
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                {project.tags.map((tag) => (
+                  <span class="px-2.5 py-0.5 text-xs font-medium rounded-full bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* FOOTER DE ACCIONES */}
+              {(project.demoLink || project.codeLink) && (
+                <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-800 flex gap-4">
+                  {project.demoLink && (
+                    <a
+                      href={project.demoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      <span>Ver Demo</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 ml-1"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M11 3a1 1 0 100 2h-7.707l5.647 5.646a.5.5 0 00-.708.708l-6-6a.5.5 0 000-.708l6-6a.5.5 0 00.708.708L3.293 5H11z"
+                          transform="rotate(180 10 10)"
+                        />
+                      </svg>
+                    </a>
+                  )}
+                  {project.codeLink && (
+                    <a
+                      href={project.codeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-1.5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                      </svg>
+                      Código
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {project.type === "client" && (
+                <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
+                  <span class="text-xs text-gray-400 flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4 mr-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    Proyecto bajo NDA / Código privado
+                  </span>
+                </div>
               )}
             </div>
           </article>
         ))
       }
     </div>
+    <div class="mt-12 text-center">
+      <a
+        href="https://github.com/miguelDR05"
+        target="_blank"
+        class="inline-flex items-center px-6 py-3 text-base font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-all hover:-translate-y-0.5"
+      >
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-1.245-3.795-1.245-.54-1.365-1.335-1.725-1.335-1.725-1.095-.75.075-.735.075-.735 1.2.075 1.83 1.23 1.83 1.23 1.08 1.845 2.805 1.32 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.245 3.285-1.245.645 1.665.24 2.895.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.61-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.225.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"
+          ></path>
+        </svg>
+        Ver más repositorios en GitHub
+      </a>
+    </div>
   </div>
 </section>
-
-<!-- En astro typescript esta por defecto -->
-<script>
-  // @ts-ignore - tiny-slider a veces no tiene tipos oficiales instalados, esto evita que TS se queje del import.
-  import { tns } from "tiny-slider";
-
-  // Definimos la función con void porque no retorna nada
-  const initSlider = (): void => {
-    // 1. Selección segura del DOM con Generics <HTMLElement>
-    // Le decimos a TS: "Espero que esto sea un elemento HTML, pero puede ser null"
-    const container = document.querySelector<HTMLElement>(".my-slider");
-
-    // 2. Guard Clause (Cláusula de guardia)
-    // Si el contenedor es null (no existe en esta página), paramos la ejecución.
-    // Esto elimina los errores en consola si el componente no se renderiza.
-    if (!container) return;
-
-    // 3. Evitar doble inicialización
-    // tiny-slider añade clases al contenedor. Si ya tiene 'tns-slider', no lo volvemos a crear.
-    if (container.classList.contains("tns-slider")) return;
-
-    // 4. Inicialización
-    try {
-      tns({
-        container: container, // Pasamos el elemento HTML directo, es más seguro que el string
-        items: 1,
-        gutter: 20,
-        slideBy: "page",
-        autoplay: false,
-        controls: true,
-        nav: false,
-        mouseDrag: true,
-        responsive: {
-          640: { items: 1 },
-          768: { items: 2 },
-          1024: { items: 3 },
-        },
-        controlsText: ["◀", "▶"],
-      });
-      console.log("Slider inicializado correctamente");
-    } catch (error) {
-      console.error("Error al iniciar tiny-slider:", error);
-    }
-  };
-
-  // Ejecutamos al cargar
-  initSlider();
-
-  // RECOMENDADO: Soporte para View Transitions (si Astro navega entre páginas sin recargar)
-  document.addEventListener("astro:page-load", initSlider);
-</script>

@@ -1,27 +1,137 @@
 ---
 import TitleSection from "@components/TitleSection.astro";
 import Code from "@components/icons/Code.astro";
-import SkillCard from "@components/SkillCard.astro";
 import type { Skill } from "@interfaces/Skill";
 
-const { skills = [] } = Astro.props as { skills: Array<Skill> };
+interface SkillCategory {
+  title: string;
+  skills: Array<Skill>;
+}
+
+const { skillCategories = [] } = Astro.props as { skillCategories: Array<SkillCategory> };
+
+const learningStack = [
+  { name: "Astro 5", icon: "🚀", type: "Frontend" }, // Puedes usar SVGs aquí también
+  { name: "Azure Cloud", icon: "☁️", type: "Cloud" },
+  { name: "Java SpringBoot", icon: "☕", type: "Backend" },
+  { name: "Angular 14+", icon: "🅰️", type: "Frontend" },
+  { name: "MongoDB", icon: "🍃", type: "Database" },
+  { name: "Redis", icon: "⚡", type: "Cache" }
+];
 ---
 
 <section
   id="skills"
-  class="scroll-section px-4 pt-25 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl text-gray-700 dark:text-gray-300"
+  class="scroll-section px-4 md:px-0 pt-25 w-full mx-auto container lg:max-w-4xl md:max-w-2xl text-gray-700 dark:text-gray-300"
 >
   <div class="w-full text-left">
     <TitleSection> <Code class="size-8" /> Mis Habilidades </TitleSection>
-    <div
-      class="grid
-      grid-cols-2
-      sm:grid-cols-3
-      md:grid-cols-4
-      lg:grid-cols-5
-      gap-6"
-    >
-      {skills.map((skill) => <SkillCard skill={skill} />)}
+
+    <div class="space-y-12">
+      {
+        skillCategories.map((category) => (
+          <div>
+            {/* Título de la Categoría */}
+            <h3 class="text-xl font-semibold mb-6 border-b border-gray-800 pb-2">
+              {category.title}
+            </h3>
+
+            {/* Grid de Skills dentro de la categoría */}
+            {/* Usamos grid-cols-1 en movil y grid-cols-2 en desktop para aprovechar espacio */}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {category.skills.map((skill) => (
+                <div
+                  class={`
+                  group flex items-start p-5 rounded-xl border transition-all duration-150
+                  
+                  /* ESTILOS BASE (Light Mode) */
+                  ${
+                    skill.highlight
+                      ? "bg-blue-50/50 border-blue-200 shadow-sm"
+                      : "bg-white border-gray-200 shadow-sm hover:bg-gray-100 hover:shadow-md hover:border-gray-300"
+                  }
+                  
+                  /* ESTILOS DARK MODE (Sobrescriben) */
+                  ${
+                    skill.highlight
+                      ? "dark:bg-gray-900/80 dark:border-blue-500/30"
+                      : "dark:bg-gray-900/40 dark:border-gray-800 dark:hover:bg-gray-900 dark:hover:border-gray-700"
+                  }
+                `}
+                >
+                  {/* Icono (Ligeramente más grande y con color en hover) */}
+                  <div class="shrink-0 mr-4 mt-1">
+                    <div
+                      class="w-10 h-10 text-3xl transition-colors duration-150 group-hover:text-white"
+                      set:html={skill.icon}
+                    />
+                  </div>
+
+                  {/* Texto */}
+                  <div>
+                    <h4 class="text-lg font-medium mb-1 flex items-center">
+                      {skill.name}
+                      {/* Opcional: Un pequeño indicador para las skills principales */}
+                      {skill.highlight && (
+                        <span class="ml-2 w-2 h-2 rounded-full bg-blue-500 inline-block" />
+                      )}
+                    </h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                      {skill.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
+  
+  <div class="mt-20 pt-10 border-t border-gray-200 dark:border-gray-800">
+  
+  <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+        <span class="text-purple-600 dark:text-purple-400">🧪</span>
+        Laboratorio & Aprendizaje
+      </h3>
+      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">
+        Tecnologías con las que estoy prototipando y expandiendo mi stack actualmente.
+      </p>
+    </div>
+    
+    <div class="mt-4 md:mt-0">
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+        <span class="w-2 h-2 mr-2 bg-purple-500 rounded-full animate-pulse"></span>
+        En progreso
+      </span>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    {learningStack.map((tech) => (
+      <div 
+        class="
+          flex items-center px-4 py-2 rounded-lg border transition-all duration-150
+          
+          /* Light Mode */
+          bg-white border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50
+          
+          /* Dark Mode */
+          dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-purple-500/50 dark:hover:bg-gray-800
+          
+          cursor-default select-none
+        "
+      >
+        <span class="mr-2 text-lg">{tech.icon}</span>
+        
+        <span class="font-medium text-sm">{tech.name}</span>
+      </div>
+    ))}
+  </div>
+  
+</div>
 </section>
+

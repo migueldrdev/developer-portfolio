@@ -104,6 +104,8 @@ const personalImageAlt =
 </section>
 
 <script>
+  import { onPageReady } from "@utils/lifecycle";
+
   /**
    * Maneja el scroll suave hacia secciones internas con URLs limpias (sin #)
    * Este script intercepta los clics en enlaces con data-scroll-link
@@ -157,5 +159,5 @@ const personalImageAlt =
   initHeroScrollLinks();
 
   // Re-ejecutar cuando Astro hace transiciones de página (SPA)
-  document.addEventListener("astro:page-load", initHeroScrollLinks);
+  onPageReady(initHeroScrollLinks);
 </script>

@@ -11,7 +11,7 @@ import Footer from "@components/Footer.astro";
 // Importar datos JSON
 import menu from "@/data/menu.json";
 import projects from "@/data/projects.json";
-import skills from "@/data/skills.json";
+import skillCategories from "@/data/skills.json";
 ---
 
 <Layout title="Segundo Miguel Delgado Ruiz — Portafolio">
@@ -24,7 +24,7 @@ import skills from "@/data/skills.json";
 
     <About />
 
-    <Skills skills={skills} />
+    <Skills skillCategories={skillCategories} />
 
     <Projects projects={projects} />
 

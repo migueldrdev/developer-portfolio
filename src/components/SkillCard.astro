@@ -1,6 +1,6 @@
 ---
 import type { Skill } from "@interfaces/Skill";
-const { skill } = Astro.props as Skill;
+const skill  = Astro.props as Skill;
 ---
 
 <div class="skill-card group w-full aspect-square relative perspective">
@@ -48,6 +48,8 @@ const { skill } = Astro.props as Skill;
 </div>
 
 <script>
+  import { onPageReady } from "@utils/lifecycle";
+
   /**
    * Maneja el flip de las tarjetas de habilidades en dispositivos táctiles
    * En desktop usa hover (CSS), en móvil usa click/tap (JS)
@@ -81,5 +83,5 @@ const { skill } = Astro.props as Skill;
   initSkillCards();
 
   // Reinicializar después de navegaciones (View Transitions)
-  document.addEventListener("astro:page-load", initSkillCards);
+  onPageReady(initSkillCards);
 </script>

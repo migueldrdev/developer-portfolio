@@ -75,6 +75,7 @@ const { menu = [] } = Astro.props;
 </nav>
 
 <script>
+  import { onPageReady } from "@utils/lifecycle";
   // --- CONSTANTES Y TIPOS ---
 
   // Clases para el estilo activo de los enlaces
@@ -330,5 +331,5 @@ const { menu = [] } = Astro.props;
   initNavbar();
 
   // Soporte para View Transitions (Navegación SPA de Astro)
-  document.addEventListener("astro:page-load", initNavbar);
+  onPageReady(initNavbar);
 </script>

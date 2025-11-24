@@ -1,0 +1,27 @@
+---
+import TitleSection from "@components/TitleSection.astro";
+import Code from "@components/icons/Code.astro";
+import SkillCard from "@components/SkillCard.astro";
+import type { Skill } from "@interfaces/Skill";
+
+const { skills = [] } = Astro.props as { skills: Array<Skill> };
+---
+
+<section
+  id="skills"
+  class="scroll-section px-4 pt-25 md:px-0 w-full mx-auto container lg:max-w-4xl md:max-w-2xl text-gray-700 dark:text-gray-300"
+>
+  <div class="w-full text-left">
+    <TitleSection> <Code class="size-8" /> Mis Habilidades </TitleSection>
+    <div
+      class="grid
+      grid-cols-2
+      sm:grid-cols-3
+      md:grid-cols-4
+      lg:grid-cols-5
+      gap-6"
+    >
+      {skills.map((skill) => <SkillCard skill={skill} />)}
+    </div>
+  </div>
+</section>

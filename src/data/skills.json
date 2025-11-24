@@ -1,80 +1,60 @@
 [
   {
-    "id": "s1",
-    "name": "HTML5",
-    "icon": "skills/html5.svg",
-    "description": "El esqueleto de la web. Estructuro contenido de manera semántica."
+    "title": "Core Frontend & UI",
+    "skills": [
+      {
+        "name": "Vue.js Ecosystem",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#42b883\" d=\"M24 1.61H14.06L12 5.16L9.94 1.61H0L12 22.39zM12 14.08L5.16 2.23H9.59L12 6.35l2.41-4.12h4.43z\"/></svg>",
+        "description": "Desarrollo de SPAs complejas, Vuex/Pinia y dashboards dinámicos.",
+        "highlight": true
+      },
+      {
+        "name": "Tailwind CSS / UI Libs",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#38bdf8\" d=\"M12.001 4.8c-3.2 0-5.2 1.6-6 4.8c1.2-1.6 2.6-2.2 4.2-1.8c.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8c-1.2 1.6-2.6 2.2-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8m-6 7.2c-3.2 0-5.2 1.6-6 4.8c1.2-1.6 2.6-2.2 4.2-1.8c.913.228 1.565.89 2.288 1.624c1.177 1.194 2.538 2.576 5.512 2.576c3.2 0 5.2-1.6 6-4.8c-1.2 1.6-2.6 2.2-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12\"/></svg>",
+        "description": "Diseño de interfaces responsivas rápidas, personalización de temas (Flowbite/Vuetify)."
+      },
+      {
+        "name": "JavaScript / TypeScript",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#f7df1e\" d=\"M3 3h18v18H3zm13.46 11.85q.404.192 1.057.48q.655.289 1.346.52q.693.23 1.327.23q1.212 0 1.876-.528q.663-.529.663-1.548q0-.77-.355-1.27q-.356-.5-1.145-1.105q-.75-.568-1.904-1.472q-1.192-.942-1.653-1.49q-.462-.548-.462-1.452q0-1.23.962-2.01q.961-.778 2.653-.778q.789 0 1.587.182q.798.183 1.5.49l-.462 1.98q-.634-.326-1.26-.52q-.624-.192-1.24-.192q-.961 0-1.451.414q-.49.413-.49 1.048q0 .557.288.99q.288.432 1.144 1.105q.827.644 2.02 1.548q1.192.904 1.672 1.548q.48.644.48 1.663q0 1.452-1.038 2.375q-1.039.923-3.01.923q-.942 0-1.836-.23q-.894-.231-1.653-.625zM7.654 18h2.5v-3.298l.827-1.01L13.5 18h3.173l-3.961-4.798l3.654-4.212h-2.943l-2.557 3.096l-2.039-2.51H6.27l3.346 4.038z\"/></svg>",
+        "description": "Lógica de negocio compleja, manipulación del DOM y asincronía."
+      }
+    ]
   },
   {
-    "id": "s2",
-    "name": "CSS3",
-    "icon": "skills/css3.svg",
-    "description": "Doy vida y estilo a las interfaces. Conozco SASS, TailwindCSS."
+    "title": "Backend & Database",
+    "skills": [
+      {
+        "name": "Laravel Ecosystem",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#f05340\" d=\"M8.06 4.388c-1.07 0-2.096.33-2.964.872l3.486 6.037c.143.25.058.57-.192.715c-.25.143-.57.058-.714-.192L4.188 5.783c-1.22 1.352-1.98 3.12-1.98 5.074c0 4.07 3.19 7.408 7.202 7.638L7.15 8.523c-.143-.25-.058-.57.192-.715c.25-.143.57-.058.714.192l2.258 9.972c3.742-.68 6.586-3.96 6.586-7.898c0-4.17-3.38-7.56-7.56-7.56c-.44 0-.874.04-1.298.113z\"/></svg>",
+        "description": "Construcción de APIs RESTful, autenticación avanzada y colas de trabajo.",
+        "highlight": true
+      },
+      {
+        "name": "SQL Server / PostgreSQL",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#336791\" d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m-.77-3.96h1.56c3.09 0 4.41-1.53 4.41-3.58c0-2.05-1.32-3.58-4.41-3.58h-1.56v7.16m1.56-6.07c1.94 0 2.79.78 2.79 2.49c0 1.71-.85 2.49-2.79 2.49h-.65V9.97z\"/></svg>",
+        "description": "Diseño de esquemas relacionales optimizados, consultas complejas y procedimientos almacenados."
+      },
+      {
+        "name": "Python / Django",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#ffe05b\" d=\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2m0 18a8 8 0 1 1 8-8a8 8 0 0 1-8 8m3-8a3 3 0 1 1-3-3a3 3 0 0 1 3 3m0 2a1 1 0 1 0 1-1a1 1 0 0 0-1 1\"/></svg>",
+        "description": "Scripts de automatización y desarrollo backend rápido."
+      }
+    ]
   },
   {
-    "id": "s3",
-    "name": "JavaScript",
-    "icon": "skills/javascript.svg",
-    "description": "La lógica interactiva del frontend. Experiencia con ES6+."
-  },
-  {
-    "id": "s4",
-    "name": "Vue.js",
-    "icon": "skills/vuejs.svg",
-    "description": "Framework progresivo para construir interfaces de usuario."
-  },
-  {
-    "id": "s5",
-    "name": "Laravel",
-    "icon": "skills/laravel.svg",
-    "description": "Framework PHP para aplicaciones web. Conozco Eloquent y Blade."
-  },
-  {
-    "id": "s6",
-    "name": "Python",
-    "icon": "skills/python.svg",
-    "description": "Experiencia en scripting, automatización y frameworks como Django/Flask."
-  },
-  {
-    "id": "s7",
-    "name": "PostgreSQL",
-    "icon": "skills/postgresql.svg",
-    "description": "Sistema de gestión de bases de datos relacional. Conozco SQL y PL/pgSQL."
-  },
-  {
-    "id": "s8",
-    "name": "Django",
-    "icon": "skills/django.svg",
-    "description": "Framework web de alto nivel para Python. Conozco Django REST Framework."
-  },
-  {
-    "id": "s9",
-    "name": "React.js",
-    "icon": "skills/react.svg",
-    "description": "Framework de JavaScript para construir interfaces de usuario. Conozco React Router y Redux."
-  },
-  {
-    "id": "s10",
-    "name": "Node.js",
-    "icon": "skills/nodejs.svg",
-    "description": "Entorno de ejecución para JavaScript en el servidor. Conozco Express y MongoDB."
-  },
-  {
-    "id": "s11",
-    "name": "Git",
-    "icon": "skills/git.svg",
-    "description": "Sistema de control de versiones. Conozco GitHub y GitLab."
-  },
-  {
-    "id": "s12",
-    "name": "Docker",
-    "icon": "skills/docker.svg",
-    "description": "Plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores."
-  },
-  {
-    "id": "s13",
-    "name": "AWS",
-    "icon": "skills/aws.svg",
-    "description": "Servicios de computación en la nube. Conozco AWS y Azure."
+    "title": "DevOps & Infraestructura",
+    "skills": [
+      {
+        "name": "Docker & Containers",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#2496ed\" d=\"M18.59 9.582l-.004-.003h-.003c-.146-.066-.366-.143-.644-.215a6.5 6.5 0 0 0-.722-.142l-.008-.002h-.002a6.8 6.8 0 0 0-.76-.077h-.1c-.195 0-.406.005-.629.016l-.007.001h-.005a8.7 8.7 0 0 0-.767.076l-.014.003c-.242.047-.504.116-.783.206l-.006.003l-.006.003c-.113.038-.228.08-.344.127a8.7 8.7 0 0 0-.639.3l-.005.003c-.097.05-.224.116-.374.2c-.162.086-.316.18-.461.282L9.33 11.61a.5.5 0 0 0-.217.33l-.26 1.425l-.023.114c-.133.627-.387 1.805-.387 2.761c0 .558.087 1.054.227 1.504l.1.315l.178.513c.244.679.603 1.383 1.065 2.042l.21.297l.336.457c.134.177.269.343.408.498a8 8 0 0 0 1.582 1.355l.1.064c.766.465 1.636.848 2.607 1.111a11.2 11.2 0 0 0 1.357.279l.148.02l.157.02c.23.027.45.045.661.057l.1.006h.2c.47 0 .903-.038 1.298-.103c.227-.035.444-.08.653-.136l.014-.004a7.6 7.6 0 0 0 .78-.274c.33-.138.638-.305.922-.5l.142-.102a8 8 0 0 0 1.047-.882c.482-.476.896-1.025 1.225-1.629l.008-.017a7 7 0 0 0 .416-.912c.178-.443.316-.935.387-1.462l.025-.194l.125-.938a.5.5 0 0 0-.153-.45l-2.174-2.101a.5.5 0 0 0-.463-.122l-1.408.415l-1.137-1.06l-.873-.814L18.59 9.582M2.938 6.5h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5m2.265 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5m2.266 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5m2.266 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5H9.735a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5m-6.797 5.094h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5v-2.78a.5.5 0 0 1 .5-.5m2.265 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5v-2.78a.5.5 0 0 1 .5-.5m2.266 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5H7.47a.5.5 0 0 1-.5-.5v-2.78a.5.5 0 0 1 .5-.5m2.266 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5H9.735a.5.5 0 0 1-.5-.5v-2.78a.5.5 0 0 1 .5-.5M2.938 16.688h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5v-2.78a.5.5 0 0 1 .5-.5m2.265 0h.914a.5.5 0 0 1 .5.5v2.781a.5.5 0 0 1-.5.5h-.914a.5.5 0 0 1-.5-.5v-2.78a.5.5 0 0 1 .5-.5\"/></svg>",
+        "description": "Creación de entornos de desarrollo replicables y despliegue en contenedores.",
+        "highlight": true
+      },
+      {
+        "name": "CI/CD & Cloud",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><path fill=\"#6e5494\" d=\"M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2\"/></svg>",
+        "description": "Pipelines en GitHub Actions, despliegues automáticos en Netlify/Vercel y fundamentos de nube."
+      }
+    ]
   }
 ]

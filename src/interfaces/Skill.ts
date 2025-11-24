@@ -1,7 +1,6 @@
 export interface Skill {
-  skill: {
-    name: string;
-    icon: string;
-    description: string;
-  };
+  name: string;
+  icon: string;
+  description: string;
+  highlight?: boolean;
 }

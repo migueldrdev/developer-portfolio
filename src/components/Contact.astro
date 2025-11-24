@@ -154,8 +154,9 @@ import TitleSection from "@components/TitleSection.astro";
 </section>
 
 <script>
-  // --- LOGIC START ---
+  import { onPageReady } from "@utils/lifecycle";
 
+  // --- LOGIC START ---
   const initContactComponent = () => {
     // 1. LÓGICA DE ENVÍO DE FORMULARIO (NETLIFY)
     const form = document.getElementById(
@@ -312,5 +313,6 @@ import TitleSection from "@components/TitleSection.astro";
   };
 
   initContactComponent();
-  document.addEventListener("astro:page-load", initContactComponent);
+  
+  onPageReady(initContactComponent);
 </script>
