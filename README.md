@@ -1,46 +1,86 @@
-# Astro Starter Kit: Basics
+# 👨‍💻 Miguel Delgado | Developer Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=for-the-badge&logo=astro)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)
+![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> A minimalist, high-performance portfolio website showcasing my projects, skills, and experience as a Full Stack Software Engineer.
 
-## 🚀 Project Structure
+## 🖼️ Preview
 
-Inside of your Astro project, you'll see the following folders and files:
+![Portfolio Banner](https://via.placeholder.com/800x400?text=Portfolio+Screenshot+Here)
+
+**[🔗 Live Demo](https://tu-dominio-aqui.com)**
+
+## 🚀 Key Features
+
+This isn't just a static site; it's an engineered solution focusing on performance and maintainability:
+
+* **⚡ Astro 5 & Island Architecture:** Zero JavaScript by default, adding interactivity only where strictly needed.
+* **🧩 Component-Driven Development:** Modular architecture with reusable UI components (Buttons, Cards, Recursive Layouts).
+* **🎨 Styling:** Styled with **TailwindCSS** for a responsive, mobile-first design.
+* **🛠️ Type Safety:** Fully typed with **TypeScript** for robustness.
+* **🚀 CI/CD Pipeline:** Automated deployment workflow using **GitHub Actions** connected to Netlify.
+
+## 🛠️ Tech Stack
+
+* **Core:** [Astro](https://astro.build/)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Icons:** [Phosphor Icons / Heroicons]
+* **Deployment:** Netlify
+
+## 📂 Project Structure
+
+A brief overview of the architectural organization:
 
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── 📂 public/           # Static assets (images, CV, icons)
+├── 📂 src/
+│   ├── 📂 components/   # Reusable UI components (Vue & Astro)
+│   │   ├── 📂 common/   # Buttons, Inputs, Cards
+│   │   └── 📂 layout/   # Navbar, Footer
+│   ├── 📂 layouts/      # Page scaffolding (SEO, Meta tags)
+│   ├── 📂 pages/        # File-based routing
+│   └── 📂 styles/       # Global styles and Tailwind config
+├── 📄 astro.config.mjs  # Astro configuration
+└── 📄 tailwind.config.cjs
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## ⚡ Performance (Lighthouse)
 
-## 🧞 Commands
+Currently aiming for a perfect score:
 
-All commands are run from the root of the project, from a terminal:
+* 🟢 **Performance:** 100
+* 🟢 **Accessibility:** 100
+* 🟢 **Best Practices:** 100
+* 🟢 **SEO:** 100
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🔧 Installation & Setup
 
-## 👀 Want to learn more?
+To run this project locally:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/miguelDR05/developer-portfolio.git](https://github.com/miguelDR05/developer-portfolio.git)
+   cd developer-portfolio
+   ```
+   
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+   
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+## 📬 Contact
+
+Feel free to reach out if you want to collaborate on a project!
+
+* LinkedIn: [Miguel Delgado](www.linkedin.com/in/miguel05dev)
+* Email: miguel05.dev@gmail.com
+---
+© 2025 Miguel Delgado. Built with Astro & Vue.
