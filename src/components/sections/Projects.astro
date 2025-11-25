@@ -84,12 +84,11 @@ const { projects } = Astro.props;
                 <div class="absolute inset-0 flex flex-col items-center justify-center p-6">
                   {/* Contenedor del Logo */}
                   <div class="w-16 h-16 mb-3 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-center p-2 z-10">
-                    {project.logo ? (
+                    {project.logo && localImages[project.logo] ? (
                       <Image
                         src={localImages[project.logo]}
                         alt={project.clientName || "Project Logo"}
                         class="w-full h-full object-contain opacity-90 group-hover:scale-110 transition-transform duration-500"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
                         width={600}
                         quality={80}
                         loading="lazy"
@@ -98,7 +97,7 @@ const { projects } = Astro.props;
 
                     {/* Icono Abstracto (Fallback o Default) */}
                     <div
-                      class={`w-full h-full text-gray-400 dark:text-gray-500 ${project.logo ? "hidden" : "block"}`}
+                      class={`w-full h-full text-gray-400 dark:text-gray-500 ${project.logo && localImages[project.logo] ? "hidden" : "block"}`}
                       set:html={project.abstractIcon}
                     />
                   </div>

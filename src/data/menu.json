@@ -1,50 +1,24 @@
 [
   {
-    "id": "home",
-    "href": "/",
-    "label": "Home"
-  },
-  {
     "id": "about-me",
     "href": "/about-me",
-    "label": "About Me"
+    "label": "Sobre mí"
   },
   {
     "id": "skills",
     "href": "/skills",
-    "label": "Skills"
+    "label": "Habilidades"
   },
   {
-    "id": "experience",
-    "href": "/experience",
-    "label": "Experience",
-    "items": [
-      {
-        "id": "aptitudes",
-        "label": "Aptitudes",
-        "href": "/aptitudes",
-        "current": false
-      },
-      { "id": "conocimientos", "label": "Conocimientos", "href": "/conocimientos", "current": false },
-      {
-        "id": "projects",
-        "label": "Projects",
-        "href": "/projects",
-        "current": false
-      },
-      {
-        "id": "otras-tecnologias",
-        "label": "Otras Tecnologías",
-        "href": "/otras-tecnologias",
-        "current": false,
-        "divider": true
-      }
-    ]
+    "id": "projects",
+    "label": "Proyectos",
+    "href": "/projects",
+    "current": false
   },
   {
     "id": "contact",
     "href": "/contact",
-    "label": "Contact",
+    "label": "Contacto",
     "current": false
   }
 ]

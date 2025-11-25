@@ -8,7 +8,7 @@
 
 ## 🖼️ Preview
 
-[![Vista Previa de mi Portafolio](./preview.png)](https://porfolio-migueldr05.netlify.app/)
+[![Vista Previa de mi Portafolio](./preview.jpg)](https://portfolio-migueldr05.netlify.app/)
 
 ## 🚀 Key Features
 

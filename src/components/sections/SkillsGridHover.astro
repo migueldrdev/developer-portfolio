@@ -1,7 +1,7 @@
 ---
-import TitleSection from "@components/TitleSection.astro";
+import TitleSection from "@components/ui/TitleSection.astro";
 import Code from "@components/icons/Code.astro";
-import SkillCard from "@components/SkillCard.astro";
+import SkillCard from "@components/ui/cards/SkillCard.astro";
 import type { Skill } from "@interfaces/Skill";
 
 const { skills = [] } = Astro.props as { skills: Array<Skill> };

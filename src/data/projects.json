@@ -1,57 +1,67 @@
 [
   {
-    "id": "p1",
-    "title": "Gestor de Inventarios",
-    "description": "Aplicación web para administración de stock y reportes en tiempo real. Soluciona el control manual y pérdidas por desorden de inventario.",
-    "stack": ["Laravel", "Vue.js", "MySQL"],
-    "github": "https://github.com/miguelDR05/inventory-manager",
-    "demo": "",
-    "image": "projects/inventory-manager.jpg"
+    "type": "client",
+    "clientName": "Agrovisión",
+    "productName": "Busvision (Suite GMO+)",
+    "logo": "agrovision-logo",
+    "abstractIcon": "<svg xmlns='http://www.w3.org/2000/svg' class='w-12 h-12 opacity-50' viewBox='0 0 24 24'><path fill='currentColor' d='M18 11c0-.958-.346-1.832-.916-2.515L15.932 4.41A2.99 2.99 0 0 0 13.593 3H10.4a3 3 0 0 0-2.332 1.41L6.916 8.485A3.98 3.98 0 0 0 6 11c-2.206 0-4 1.794-4 4v5h2v2h2v-2h12v2h2v-2h2v-5c0-2.206-1.794-4-4-4M8 6l2-2h4l2 2v2H8zm-2 9a2 2 0 1 1 0-4a2 2 0 0 1 0 4m12 0a2 2 0 1 1 0-4a2 2 0 0 1 0 4'/></svg>",
+    "category": "Logística Agroindustrial",
+    "role": "Full Stack Lead",
+    "description": "Desafío: Gestionar la logística de transporte de una corporación masiva con tarifas variables y ruteo manual. Solución: Arquitecté un ERP de más de 60 módulos con monitoreo GPS en tiempo real, cálculo de nóminas complejas y validación de tarifas por ruta/km. Resultado: Automatización total de pagos a proveedores.",
+    "tags": ["Laravel", "Vue 3", "Google Maps API", "SQL Server"],
+    "highlight": true
   },
   {
-    "id": "p2",
-    "title": "Portfolio Personal (Astro)",
-    "description": "Sitio estático optimizado con Astro para mostrar proyectos, experiencia y contacto.",
-    "stack": ["Astro", "JavaScript", "CSS"],
-    "github": "https://github.com/miguelDR05/developer-portfolio",
-    "demo": "",
-    "image": "projects/developer-portfolio.jpg"
+    "type": "client",
+    "clientName": "Agrovisión",
+    "productName": "AccessControl & Security",
+    "logo": "agrovision-logo",
+    "abstractIcon": "<svg xmlns='http://www.w3.org/2000/svg' class='w-12 h-12 opacity-50' viewBox='0 0 24 24'><path fill='currentColor' d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11z'/></svg>",
+    "category": "Seguridad Corporativa",
+    "role": "Tech Lead",
+    "description": "Desafío: Centralizar la seguridad física y lógica de miles de trabajadores. Solución: Sistema RBAC (Roles y Permisos) avanzado con listas negras dinámicas por antecedentes y control de visitas. Integración con Busvision para validación de abordaje.",
+    "tags": ["Security", "Tech Lead", "RBAC", "Integrations"]
   },
   {
-    "id": "p3",
-    "title": "Gestor de Inventarios",
-    "description": "Aplicación web para administración de stock y reportes en tiempo real. Soluciona el control manual y pérdidas por desorden de inventario.",
-    "stack": ["Laravel", "Vue.js", "MySQL"],
-    "github": "https://github.com/miguelDR05/inventory-manager",
-    "demo": "",
-    "image": "projects/inventory-manager.jpg"
+    "type": "client",
+    "clientName": "Educat / Científica del Sur",
+    "productName": "GPR: Planner Corporativo",
+    "logo": "educad-logo",
+    "abstractIcon": "<svg xmlns='http://www.w3.org/2000/svg' class='w-12 h-12 opacity-50' viewBox='0 0 24 24'><path fill='currentColor' d='M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1s-1-.45-1-1s.45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'/></svg>",
+    "category": "EdTech / Gestión",
+    "role": "Full Stack Developer",
+    "description": "Desafío: Digitalizar la planificación estratégica y OKRs. Solución: Plataforma con diagramas de Gantt interactivos, alertas automatizadas por Cron Jobs (Linux/Lumen) y cálculo de avances en tiempo real.",
+    "tags": ["Lumen", "Quasar", "Interactive Gantt", "Cron Jobs"]
   },
   {
-    "id": "p4",
-    "title": "Portfolio Personal (Astro)",
-    "description": "Sitio estático optimizado con Astro para mostrar proyectos, experiencia y contacto.",
-    "stack": ["Astro", "JavaScript", "CSS"],
-    "github": "https://github.com/miguelDR05/developer-portfolio",
-    "demo": "",
-    "image": "projects/developer-portfolio.jpg"
+    "type": "client",
+    "clientName": "Agrovisión (Recruitment)",
+    "productName": "Motor de Ingesta Masiva",
+    "logo": "agrovision-logo",
+    "abstractIcon": "<svg xmlns='http://www.w3.org/2000/svg' class='w-12 h-12 opacity-50' viewBox='0 0 24 24'><path fill='currentColor' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm1.8 18H14l-2-3.4l-2 3.4H8.2l2.9-4.5L8.2 11H10l2 3.4l2-3.4h1.8l-2.9 4.5zM13 9V3.5L18.5 9z'/></svg>",
+    "category": "Ingeniería de Datos",
+    "role": "Backend Architect",
+    "description": "Desafío: El registro manual de postulantes era insostenible. Solución: Componente de 'Ingeniería Reutilizable' capaz de procesar Excel masivos, mapear tablas anidadas y validar reglas recursivas antes de la inserción en BD.",
+    "tags": ["Algorithmic Logic", "Excel Parsing", "Complex Validation"]
   },
   {
-    "id": "p5",
-    "title": "Gestor de Inventarios",
-    "description": "Aplicación web para administración de stock y reportes en tiempo real. Soluciona el control manual y pérdidas por desorden de inventario.",
-    "stack": ["Laravel", "Vue.js", "MySQL"],
-    "github": "https://github.com/miguelDR05/inventory-manager",
-    "demo": "",
-    "image": "projects/inventory-manager.jpg"
+    "type": "client",
+    "clientName": "Agrovisión (Campo)",
+    "productName": "FIPE Mobile Offline",
+    "logo": "agrovision-logo",
+    "abstractIcon": "<svg xmlns='http://www.w3.org/2000/svg' class='w-12 h-12 opacity-50' viewBox='0 0 24 24'><path fill='currentColor' d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99M17 19H7V5h10z'/></svg>",
+    "category": "Mobile Development",
+    "role": "Mobile Developer",
+    "description": "Desafío: Registrar labores sin internet. Solución: App Flutter 'Offline-first'. Sincronización inteligente en segundo plano (Background Fetch) y base de datos SQLite local.",
+    "tags": ["Flutter", "Dart", "Offline-first", "SQLite"]
   },
   {
-    "id": "p6",
-    "title": "Portfolio Personal (Astro)",
-    "description": "Sitio estático optimizado con Astro para mostrar proyectos, experiencia y contacto.",
-    "stack": ["Astro", "JavaScript", "CSS"],
-    "github": "https://github.com/miguelDR05/developer-portfolio",
-    "demo": "",
-    "image": "projects/developer-portfolio.jpg"
+    "type": "personal",
+    "title": "Portafolio Profesional V2",
+    "description": "Sitio estático generado con Astro 5, utilizando 'Island Architecture' para minimizar el JavaScript cliente y optimizar el renderizado crítico.",
+    "image": "portfolio-v2",
+    "tags": ["Astro 5", "Tailwind CSS", "Performance"],
+    "codeLink": "https://github.com/miguelDR05/developer-portfolio",
+    "demoLink": "https://portfolio-migueldr05.netlify.app/"
   }
-
 ]
