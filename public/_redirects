@@ -2,6 +2,11 @@
 # Esto permite que /skills, /projects, etc. funcionen correctamente
 # El código 200 hace un "rewrite" sin cambiar la URL
 
+# IMPORTANTE: Excluir archivos estáticos ANTES del catch-all
+/CV.pdf           /CV.pdf       200
+/favicon.svg      /favicon.svg  200
+/preview.jpg      /preview.jpg  200
+
 # Rutas de secciones
 /skills           /index.html   200
 /projects         /index.html   200

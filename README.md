@@ -8,7 +8,7 @@
 
 ## 🖼️ Preview
 
-[![Vista Previa de mi Portafolio](./preview.jpg)](https://portfolio-migueldr05.netlify.app/)
+[![Vista Previa de mi Portafolio](https://raw.githubusercontent.com/miguelDR05/developer-portfolio/main/public/preview.jpg)](https://portfolio-migueldr05.netlify.app/)
 
 ## 🚀 Key Features
 
@@ -36,8 +36,10 @@ A brief overview of the architectural organization:
 ├── 📂 public/           # Static assets (images, CV, icons)
 ├── 📂 src/
 │   ├── 📂 components/   # Reusable UI components (Vue & Astro)
-│   │   ├── 📂 common/   # Buttons, Inputs, Cards
-│   │   └── 📂 layout/   # Navbar, Footer
+│   │   ├── 📂 icons/    # SVG Icons
+│   │   ├── 📂 layout/   # Navbar, Footer
+│   │   ├── 📂 sections/ # Sections of pages (Projects, About, Contact)
+│   │   └── 📂 ui/       # Buttons, Cards, Badges
 │   ├── 📂 layouts/      # Page scaffolding (SEO, Meta tags)
 │   ├── 📂 pages/        # File-based routing
 │   └── 📂 styles/       # Global styles and Tailwind config
