@@ -5,28 +5,24 @@ import tailwindcss from '@tailwindcss/vite';
 
 import netlify from '@astrojs/netlify';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
-  // Configuración para SPA (Single Page Application)
-  // Esto maneja correctamente las rutas client-side
-  output: 'static',
-
-  image: {
-    // Configuración de optimización de imágenes para Astro 5
-    service: {
-      entrypoint: 'astro/assets/services/sharp',
-      config: {
-        limitInputPixels: false,
-      }
-    },
-    // Dominios remotos permitidos (si usas imágenes externas)
-    remotePatterns: [],
-  },
-
+  output: 'server',
   vite: {
     // @ts-ignore - Incompatibilidad de tipos entre Vite y @tailwindcss/vite
     plugins: [tailwindcss()]
   },
 
-  // adapter: netlify()
+  adapter: cloudflare({
+    // Habilitamos el servicio de imágenes nativo de Cloudflare (si lo soportan en el plan free)
+    // O usamos 'passthrough' para que no de errores.
+    imageService: 'cloudflare', 
+    
+    // IMPORTANTE: Esto ayuda a que las variables de entorno funcionen mejor
+    platformProxy: {
+      enabled: true,
+    },
+  })
 });

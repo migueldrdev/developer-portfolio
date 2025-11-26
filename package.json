@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.5",
+    "@astrojs/cloudflare": "^12.6.11",
     "@astrojs/netlify": "^6.6.2",
     "@fontsource-variable/onest": "^5.2.11",
     "@google/generative-ai": "^0.24.1",
