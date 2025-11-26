@@ -1,11 +1,13 @@
 import type { APIRoute } from "astro";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    // 1. Obtener la API Key
-    // En Astro + Cloudflare se usa import.meta.env, NO process.env
-    const apiKey = import.meta.env.GEMINI_API_KEY;
+    // 1. Obtener la API Key desde Cloudflare o variables de entorno locales
+    
+    // En Cloudflare Pages, las variables de entorno están en locals.runtime.env
+    // En desarrollo local, están en import.meta.env
+    const apiKey = locals.runtime?.env?.GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       return new Response(
