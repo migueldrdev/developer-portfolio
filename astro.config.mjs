@@ -9,7 +9,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: 'server',
   vite: {
     // @ts-ignore - Incompatibilidad de tipos entre Vite y @tailwindcss/vite
     plugins: [tailwindcss()]
