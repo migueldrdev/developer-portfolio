@@ -61,7 +61,7 @@
     "description": "Sitio estático generado con Astro 5, utilizando 'Island Architecture' para minimizar el JavaScript cliente y optimizar el renderizado crítico.",
     "image": "portfolio-v2",
     "tags": ["Astro 5", "Tailwind CSS", "Performance"],
-    "codeLink": "https://github.com/miguelDR05/developer-portfolio",
-    "demoLink": "https://portfolio-migueldr05.netlify.app/"
+    "codeLink": "https://github.com/migueldrdev/developer-portfolio",
+    "demoLink": "https://migueldrdev.dev/"
   }
 ]

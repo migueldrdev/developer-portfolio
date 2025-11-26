@@ -3,12 +3,14 @@
 ![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=for-the-badge&logo=astro)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)
 ![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Cloudeflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?style=for-the-badge&logo=cloudflare)
 
 > A minimalist, high-performance portfolio website showcasing my projects, skills, and experience as a Full Stack Software Engineer.
 
 ## 🖼️ Preview
 
-[![Vista Previa de mi Portafolio](https://raw.githubusercontent.com/miguelDR05/developer-portfolio/main/public/preview.jpg)](https://portfolio-migueldr05.netlify.app/)
+[![Vista Previa de mi Portafolio](https://raw.githubusercontent.com/migueldrdev/developer-portfolio/main/public/preview.jpg)](https://migueldrdev.dev/)
 
 ## 🚀 Key Features
 
@@ -62,7 +64,7 @@ To run this project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/miguelDR05/developer-portfolio.git
+   git clone https://github.com/migueldrdev/developer-portfolio.git
    cd developer-portfolio
    ```
    
@@ -80,7 +82,7 @@ To run this project locally:
 
 Feel free to reach out if you want to collaborate on a project!
 
-* LinkedIn: [Miguel Delgado](www.linkedin.com/in/miguel05dev)
+* LinkedIn: [Miguel Delgado](https://www.linkedin.com/in/migueldrdev)
 * Email: miguel05.dev@gmail.com
 ---
 © 2025 Miguel Delgado. Built with Astro & Vue.
